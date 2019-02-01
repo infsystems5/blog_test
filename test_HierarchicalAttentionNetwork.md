@@ -18,16 +18,16 @@ description = "Hierarchical Attention Network - An Introduction"
 
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, wheter ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
-<img style=" width:500px;display:block;margin:0 auto;"
-src="/intro1.png">
+<img style=" width:400px;display:block;margin:0 auto;"
+src="intro1.png">
 
 ## Outline
 * [Introduction](#introduction)
 * [Text Classification](#text-classification)
-* [literature Review](#literature-review)
+* [Literature Review](#literature-review)
 * [Text Classification with Hierarchical Attention Network](#text-classification-with-hierarchical-attention-network)
 * [Applications](#applications)
-* [Classify News](#classify-news)
+* [News Classification](#news-classification)
 * [Take Away](#take-away)
 
 # Text Classification
@@ -45,9 +45,9 @@ The basics of all text classification problems lie in so-called Information Retr
 Here you can see the most important steps in unsupervised text classification:
 
 **Unsupervised**
----------------------------------------------------------------------
+
 Year | Authors | Method Characteristics | Paper 
----------------------------------------------------------------------
+-----|---------|------------------------|-----------------------------
 1971 | Jardine, van Rijsbergen | Clustering keywords of similar texts | [The Use of Hierarchic Clustering in Information Retrieval](https://www.researchgate.net/publication/220229653_The_Use_of_Hierarchic_Clustering_in_Information_Retrieval)
 1974 | Salton et al. | Ranking words in accordance with how well they are able to discriminate the documents | [A Theory of Term Importance in Automatic Text Analysis.](https://eric.ed.gov/?id=ED096987)
 1983 | Salton, McGill | SMART - First text represenations with vectors | [Introduction to Modern Information Retrieval](http://www.information-retrieval.de/irb/ir.part_1.chapter_3.section_6.topic_6.html)
@@ -57,7 +57,7 @@ Year | Authors | Method Characteristics | Paper
 Find all listed abbreviations in the following table:
 
 Abbr. | Meaning
-----------------------------------------------------------------
+------|--------------------------------------------------------
 SMART | System for the Mechanical Analysis and Retrieval of Text
 SG | Scatter/Gather
 
@@ -65,20 +65,20 @@ With the improvement of the user-friendliness and related spread of internet usa
 Since we use a neural network, the comparison with other neural networks is prior for us. Of course, there are several different implementations of convolutional and recurrent neural networks, below are only mentioned the most 'innovative'.
 
 **(Semi-) Supervised**
--------------------------------------------------------------------------
+
 Year | Network | Authors | Method Characteristics | Paper 
--------------------------------------------------------------------------
+-----|---------|---------|------------------------|--------------------------
 1995 | PN | Makoto, Tokunaga | Clustering by maximum Bayesian posterior probability | [Hierarchical Bayesian Clustering for Automatic Text Classification](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=BE17EC88A0C9DB576DA0E36C70F54EC3?doi=10.1.1.52.2417&rep=rep1&type=pdf)
 1999 | PN | Nigam et al. | Improving learned classifiers with Expectation Maximization and Naive Bayes | [Text Classification from Labeled and Unlabeled Documents using EM.](http://www.kamalnigam.com/papers/emcat-mlj99.pdf)
-
+ | | | | 
 1998 | SVM | Joachims | Binary classifying, represenation with support-vectors | [Text Categorization with Support Vector Machines: Learning with Many Relevant Features.](http://web.cs.iastate.edu/~jtian/cs573/Papers/Joachims-ECML-98.pdf)
 2004 | SVM | Mullen, Collier | Classifying with SVM and unigrams | [Sentiment analysis using support vector machines with diverse information sources](http://www.aclweb.org/anthology/W04-3253)
 2005 | SVM-H | Matsumoto et al. | SVM + Unigrams and Bigrams, Sentence dependancy sub-trees, word sub-sequences | [Sentiment Classification Using Word Sub-sequences and Dependancy Sub-trees](https://link.springer.com/content/pdf/10.1007%2F11430919_37.pdf)
-
+ | | | | 
 1994 | NN | Farkas | NN + Thesaurus -> First weighted, dictionairy-based relations | [Generating Document Clusters Using Thesauri and Neural Networks](https://vdocuments.site/ieee-proceedings-of-canadian-conference-on-electrical-and-computer-engineering-58e24c154d826.html)
 1996 | NN-SOM | Hyötyniemi | Compeitive learning instead of error-correction (e.g. backpropagation), Mapping to reduced dimensions | [Text Document Classification with Self-Organizing Maps](http://lipas.uwasa.fi/stes/step96/step96/hyotyniemi3/)
 1998 | NN-SOM-H | Merkl | SOM on hierarchical document levels | [Text classification with self-organizing maps: Some lessons learned](https://www.sciencedirect.com/science/article/pii/S0925231298000320)
-
+ | | | | 
 2014 | CNN | Johnson, Zhang | CNN on word order instead of low-dimensional word vectors | [Effective Use of Word Order for Text Categorization with Convolutional Neural Networks](https://arxiv.org/pdf/1412.1058.pdf)
 2014 | CNN | Kim | Simple CNN with static vectors on top of pre-trained word vectors | [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/pdf/1408.5882.pdf)
 2015 | LSTM | Tai et al. | LSTM on tree-structured networks | [Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks](http://aclweb.org/anthology/P15-1150)
@@ -86,7 +86,7 @@ Year | Network | Authors | Method Characteristics | Paper
 2016 | HAN | Yang et al. | NN and GRU on hierarchical document levels with attention on contexts | [Hierarchical Attention Networks for Document Classification](https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf) 
 
 Abbr. | Meaning
--------------------------
+------|-------------------
 PN | Probabilistic Network 
 SVM | Support-vector Machine
 H | Hierarc Document Structure 
@@ -101,34 +101,3 @@ HAN | Hierarchical Attention Network
 
 Contrary to the most text classification implementations, HAN considers not only the hierarchical structure of documents (document - sentences - words), but also includes an attention mechanism that's able to find the most important words and sentences given the whole contexts, whereas other methods only return importances resulting from previous words.
 To start from scratch, have a look at this example:
-
-=============================================================================
-=============================================================================
-TESTS 
-
-Let's test the ipynb integration:
-
-<script src="https://gist.github.com/kraenkem/80f5c0513f8f5517f800a667efba0d67.js"></script>
-
-Yes, that is working. :) 
-
-```python
-import numpy as np
-import pandas as pd
-2+3
-```
-=====================================================================================
-SAMPLE POST:
-[Source: https://www.jstor.org/stable/pdf/2684922.pdf]
-
-<br/>
-<br/>
-
-* identifying underwater sonar contacts
-* predicting heart problems in patients
-* diagnosing hypertension
-* recognizing speech
-* the preferred tool in predicting protein secondary structures
-
-<iframe src="https://giphy.com/embed/8tvzvXhB3wcmI" width="800" height="400" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-<p><a href="https://giphy.com/gifs/deep-learning-8tvzvXhB3wcmI">via GIPHY</a></p>
