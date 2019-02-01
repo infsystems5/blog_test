@@ -19,7 +19,7 @@ description = "Hierarchical Attention Network - An Introduction"
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, wheter ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
 <img style=" width:500px;display:block;margin:0 auto;"
-src="/blog/img/seminar/han/intro1.png">
+src="/blog_test/intro1.png">
 
 ## Outline
 * [Introduction](#introduction)
