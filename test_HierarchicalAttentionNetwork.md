@@ -107,3 +107,5 @@ Summarizing, HAN tries to find a solution to these problems, previous works did 
 * To extract the main information, it is not enough to work with the single information of each word, but to get the context of all sentences and word interactions. 
 In this way, HAN performs better in predicting the class of a given document. 
 To start from scratch, have a look at this example:
+<img style=" width:200px;display:block;margin:0 auto;"
+src="reviewyelp.png">
