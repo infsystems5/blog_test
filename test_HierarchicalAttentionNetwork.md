@@ -18,8 +18,7 @@ description = "Hierarchical Attention Network - An Introduction"
 
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, wheter ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
-<img style=" width:400px;display:block;margin:0 auto;"
-src="intro1.png">
+<img src="intro1.png" width="100%">
 
 ## Outline
 * [Introduction](#introduction)
@@ -107,5 +106,11 @@ Summarizing, HAN tries to find a solution to these problems, previous works did 
 * To extract the main information, it is not enough to work with the single information of each word, but to get the context of all sentences and word interactions. 
 In this way, HAN performs better in predicting the class of a given document. 
 To start from scratch, have a look at this example:
-<img style=" width:200px;display:block;margin:0 auto;"
-src="reviewyelp.png">
+<center>
+<p> [[1]](#references) </p>
+<img width="60%" src="reviewyelp.png">
+</center>
+
+### References
+
+[1] Yang et al. Hierarchical Attention Networks for Document Classification. 2016
