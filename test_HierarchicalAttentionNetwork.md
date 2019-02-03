@@ -100,16 +100,21 @@ HAN | Hierarchical Attention Network
 
 # Text Classification with Hierarchical Attention Network
 
-Contrary to the most text classification implementations, HAN considers not only the hierarchical structure of documents (document - sentences - words), but also includes an attention mechanism that's able to find the most important words and sentences given the whole contexts, whereas other methods only return importances resulting from previous words.
+Contrary to the most text classification implementations, HAN also considers the hierarchical structure of documents (document - sentences - words) and includes an attention mechanism that's able to find the most important words and sentences given the whole contexts, whereas other methods only return importances resulting from previous words. 
 Summarizing, HAN tries to find a solution to these problems, previous works did not consider:
 * Not every word in a sentence and every sentence in a document is equally important to extract the main information from the document.
-* To extract the main information, it is not enough to work with the single information of each word, but to get the context of all sentences and word interactions. 
+* To extract the main information in changing contexts, it is not enough to work with the single information of each word, but to get the context of all sentences and word interactions. 
 In this way, HAN performs better in predicting the class of a given document. 
 To start from scratch, have a look at this example:
 <center>
  <img width="50%" src="reviewyelp.png">
- <p>[1](###references)</p>
+ <p>[1](#references)</p>
 </center>
+
+Here we have a review from yelp that consists of five sentences. The highlighted sentences in red deliver stronger meaning compared to the others and inside, the words *delicious* and *amazing* contribute the most in attributing the positive attitude contained in this review. HAN predicts pretty well the most relevant information as it assorts with what we would intuitively gain from this review.
+
+**This is how the architecture** of HAN looks like:
+
 
 ### References
 
