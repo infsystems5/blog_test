@@ -56,7 +56,7 @@ Year | Authors | Method Characteristics | Paper
 
 Find all listed abbreviations in the following table:
 
-Abbr. | Meaning
+Abbr. | Explanation
 ------|--------------------------------------------------------
 SMART | System for the Mechanical Analysis and Retrieval of Text
 SG | Scatter/Gather
@@ -81,11 +81,13 @@ Year | Network | Authors | Method Characteristics | Paper
  | | | | 
 2014 | CNN | Johnson, Zhang | CNN on word order instead of low-dimensional word vectors | [Effective Use of Word Order for Text Categorization with Convolutional Neural Networks](https://arxiv.org/pdf/1412.1058.pdf)
 2014 | CNN | Kim | Simple CNN with static vectors on top of pre-trained word vectors | [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/pdf/1408.5882.pdf)
+2014 | CNN-char | dos Santos, Zadrozny | Semantic word informations with CNN on character level | [Learning Character-level Representations for Part-of-Speech Tagging](http://proceedings.mlr.press/v32/santos14.pdf)
 2015 | LSTM | Tai et al. | LSTM on tree-structured networks | [Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks](http://aclweb.org/anthology/P15-1150)
+2015 | C-LSTM | Zhou et al. | CNN for higher-level representations, LSTM for sentence representations | [A C-LSTM Neural Network for Text Classification](https://arxiv.org/pdf/1511.08630.pdf)
 2015 | CNN/LSTM-GRU | Tang et al. | CNN / LSTM for sentence representation, GRU for semantic information | [Document Modeling with Gated Recurrent Neural Network for Sentiment Classification](http://ir.hit.edu.cn/~dytang/paper/emnlp2015/emnlp2015.pdf)
 2016 | HAN | Yang et al. | NN and GRU on hierarchical document levels with attention on contexts | [Hierarchical Attention Networks for Document Classification](https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf) 
 
-Abbr. | Meaning
+Abbr. | Explanation
 ------|-------------------
 PN | Probabilistic Network 
 SVM | Support-vector Machine
@@ -100,4 +102,8 @@ HAN | Hierarchical Attention Network
 # Text Classification with Hierarchical Attention Network
 
 Contrary to the most text classification implementations, HAN considers not only the hierarchical structure of documents (document - sentences - words), but also includes an attention mechanism that's able to find the most important words and sentences given the whole contexts, whereas other methods only return importances resulting from previous words.
+Summarizing, HAN tries to find a solution to these problems, previous works did not consider:
+* Not every word in a sentence and every sentence in a document is equally important to extract the main information from the document.
+* To extract the main information, it is not enough to work with the single information of each word, but to get the context of all sentences and word interactions. 
+In this way, HAN performs better in predicting the class of a given document. 
 To start from scratch, have a look at this example:
