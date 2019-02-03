@@ -107,10 +107,10 @@ Summarizing, HAN tries to find a solution to these problems, previous works did 
 In this way, HAN performs better in predicting the class of a given document. 
 To start from scratch, have a look at this example:
 <center>
-<p> [[1]](#references) </p>
-<img width="60%" src="reviewyelp.png">
+ <img width="50%" src="reviewyelp.png">
+ <p>[1](###references)</p>
 </center>
 
 ### References
 
-[1] Yang et al. Hierarchical Attention Networks for Document Classification. 2016
+1 Yang et al. Hierarchical Attention Networks for Document Classification. 2016
