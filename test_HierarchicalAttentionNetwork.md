@@ -115,7 +115,7 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 
 **This is how the architecture** of HAN looks like:
 <center>
- <img width="100%" src="han_architecture.jpg">
+ <img width="60%" src="han_architecture.jpg">
  <p>[1](#references)</p>
 </center>
 
@@ -126,3 +126,4 @@ First, the network considers the hierarchical structure of documents by construc
 ### References
 
 1 Yang et al. Hierarchical Attention Networks for Document Classification. 2016
+
