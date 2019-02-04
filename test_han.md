@@ -112,7 +112,7 @@ To start from scratch, have a look at this example:
  [1](#references)
 </center>
 
-
+<br>
 Here we have a review from yelp that consists of five sentences. The highlighted sentences in red deliver stronger meaning compared to the others and inside, the words *delicious* and *amazing* contribute the most in attributing the positive attitude contained in this review. HAN predicts pretty well the most relevant information as it assorts with what we would intuitively gain from this review. <br>
 
 ## Architecture of Hierarchical Attention Network
@@ -139,9 +139,9 @@ The model consists of
 
 * As input we have structured tokens **w_it**, that is word i per sentence t. We do not keep all words in a sentence. Learn more about that in section [data preprocessing](data-preprocessing).
 * Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' multidimensional vectors **W_e*w_ij** to each token. In this way, words are represented numerically as **x_it** as a projection of the word in a continuous vector space. <br>
-	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training.
+	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training. <br>
   <center>
-  <img width="38%" src="x_it.jpg">
+  <img width="38%" src="x_it.JPG">
   </center>
 
 #### Word Encoder
@@ -150,20 +150,20 @@ The model consists of
 	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotations* per word. <br>
 	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_it**.  <br>
   <center>
-  <img width="38%" src="h_it.jpg">
+  <img width="38%" src="h_it.JPG">
   </center>
 
 #### Word Attention
 
-* Those annotations h_it build the base for the attention mechanism which starts with another hidden layer, a one-layer Multilayer Perceptron. Goal is to let the model learn through training with randomly initialized weights and biases. Those 'improved' annotations are then represented by **u_it**. Furthermore, this layer ensures that the network does not falter with a tanh function. This function 'corrects' input values to being between -1 and 1 and also maps zeros to near-zeros.
+* Those annotations h_it build the base for the attention mechanism which starts with another hidden layer, a one-layer Multilayer Perceptron. Goal is to let the model learn through training with randomly initialized weights and biases. Those 'improved' annotations are then represented by **u_it**. Furthermore, this layer ensures that the network does not falter with a tanh function. This function 'corrects' input values to being between -1 and 1 and also maps zeros to near-zeros. <br>
   <center>
-  <img width="38%" src="u_it.jpg">
+  <img width="38%" src="u_it.JPG">
   </center>
-* Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function.
+* Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function. <br>
   <center>
-  <img width="32%" src="alpha_it.jpg">
+  <img width="32%" src="alpha_it.JPG">
   </center>
-* The sum of these importance weights concatenated with the previously calculated context annotations return probability of belonging to a predefined class shown as sentence vector **s_i**
+* The sum of these importance weights concatenated with the previously calculated context annotations return probability of belonging to a predefined class shown as sentence vector **s_i** <br>
   <center>
   <img width="25%" src="s_i.JPG">
   </center>
