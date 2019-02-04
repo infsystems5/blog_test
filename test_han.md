@@ -146,7 +146,7 @@ The model consists of
 
 #### Word Encoder
 
-* These vectorized tokens are the inputs for the next layer. Yang et al. use a Gated Recurrent Network (GRU) as encoding mechanism. As a short reminder: In a RNN, states are 'rembemberd' to ensure we can predict words depending on previous words. GRU has a so-called 'hidden state' which can be understood as a memory cell to transfer information. Two gates decide about whether to keep or forget information and with this knowledge, to update the information that should be kept. If you are interested in learning more about GRU, have a look at this nice [blog post](https://isaacchanghau.github.io/post/lstm-gru-formula/). <br>
+* These vectorized tokens are the inputs for the next layer. Yang et al. use a Gated Recurrent Network (GRU) as encoding mechanism. As a short reminder: In a RNN, states are 'remembered' to ensure we can predict words depending on previous words. GRU has a so-called 'hidden state' which can be understood as a memory cell to transfer information. Two gates decide about whether to keep or forget information and with this knowledge, to update the information that should be kept. If you are interested in learning more about GRU, have a look at this nice [blog post](https://isaacchanghau.github.io/post/lstm-gru-formula/). <br>
 	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotations* per word. <br>
 	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_it**.  <br>
   <center>
@@ -163,10 +163,24 @@ The model consists of
   <center>
   <img width="32%" src="alpha_it.JPG">
   </center>
-* The sum of these importance weights concatenated with the previously calculated context annotations return probability of belonging to a predefined class shown as sentence vector **s_i** <br>
+* The sum of these importance weights concatenated with the previously calculated context annotations is called sentence vector **s_i** <br>
   <center>
   <img width="25%" src="s_i.JPG">
   </center>
+
+### Sentence Level
+
+<img width="100%" src="han_sent.png">
+
+* Then the whole network is run on sentence level with basically the same procedure as on word level. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input. In addition, now we focus on the actual sentence i.
+* Trainable weights and biases are again outside randomly initialized.
+* The final output is a document vector **v** which can be used as features for document classification.
+* Find all formula for sentence level below.
+<center>
+<img width="30%" src="h_i.JPG">
+<img width="17%" src="h_i1.JPG">
+<img width="28%" src="ualphav.JPG">
+</center>
 
 ### Data Preprocessing
 
