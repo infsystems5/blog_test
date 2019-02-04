@@ -165,7 +165,7 @@ The model consists of
   </center>
 * The sum of these importance weights concatenated with the previously calculated context annotations return probability of belonging to a predefined class shown as sentence vector **s_i**
   <center>
-  <img width="25%" src="s_i.jpg">
+  <img width="25%" src="s_i.JPG">
   </center>
 
 ### Data Preprocessing
