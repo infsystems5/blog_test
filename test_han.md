@@ -138,9 +138,17 @@ The model consists of
 <img width="100%" src="han_word.png">
 
 * As input we have structured tokens **w_{it}**, that is word i per sentence t. We do not keep all words in a sentence. Learn more about that in section [data preprocessing](data-preprocessing). 
-* Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' vectors to each token. In this way, words are represented numerically as a projection of the word in a continuous vector space. <br>
-	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training.
-* 
+* Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' multidimensional vectors **W_ew_{ij}** to each token. In this way, words are represented numerically as **x_{it}** as a projection of the word in a continuous vector space. <br>
+	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training. 
+	\begin{equation*}
+	\small
+	x_{it} = W_ew_{it}, t \in [1, T] 
+	\end{equation*}
+* These vectorized tokens are the inputs for the next layer. Yang et al. use a Gated Recurrent Network (GRU) as encoding mechanism. As a short reminder: In a RNN, states are 'rembemberd' to ensure we can predict words depending on previous words. GRU has a so-called 'hidden state' which can be understood as a memory cell to transfer information. Two gates decide about whether to keep or forget information and with this knowledge, to update the information that should be kept. If you are interested in learning more about GRU, have a look at this nice [blog](https://isaacchanghau.github.io/post/lstm-gru-formula/). <br>
+	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotaions* per word. <br>
+	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_{it}**.  
+
+### Data Preprocessing
 
 ### References
 
