@@ -113,6 +113,8 @@ To start from scratch, have a look at this example:
 
 Here we have a review from yelp that consists of five sentences. The highlighted sentences in red deliver stronger meaning compared to the others and inside, the words *delicious* and *amazing* contribute the most in attributing the positive attitude contained in this review. HAN predicts pretty well the most relevant information as it assorts with what we would intuitively gain from this review. <br>
 
+## Architecture of Hierarchical Attention Network
+
 **This is how the architecture** of HAN looks like:
 <center>
  <img width="60%" src="han_architecture.jpg">
@@ -121,7 +123,22 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 
 First, the network considers the hierarchical structure of documents by constructing a document representation by building representations of sentences and then aggregating those into a document representation. <br>
 **Sentence representations** are built by encoding the word of a sentence firstly and apply the attention mechanism on them secondly resulting in a *sentence vector*. <br>
-**Document representation** is built in the same way, only having the sentence vector of each sentence of the document as input.
+**Document representation** is built in the same way, only having the sentence vector of each sentence of the document as input. <br>
+
+Now, have a different view on the architecture of the model to understand how it works. <br>
+The same algorithms are applied two times: First on word level and afterwards on sentence level. <br>
+The model consists of 
+* the encoder, which returns relevant contexts, and 
+* the attention mechanism, which computes importances of these contexts as one vector.
+
+### Word Level
+
+<img width="80%" src="han_word.png">
+
+* As input we have structured tokens **w_{it}**, that is word i per sentence t. We do not keep all words in a sentence. Learn more about that in section [data preprocessing](data-preprocessing). 
+* Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' vectors to each token. In this way, words are represented numerically as a projection of the word in a continuous vector space. <br>
+	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training.
+* 
 
 ### References
 
