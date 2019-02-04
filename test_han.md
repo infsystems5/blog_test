@@ -120,7 +120,7 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 </center>
 
 First, the network considers the hierarchical structure of documents by constructing a document representation by building representations of sentences and then aggregating those into a document representation. <br>
-**Sentence representations** are built by encoding the word of a sentence firstly and apply the attention mechanism on them secondly resulting in a *sentence vector*. 
+**Sentence representations** are built by encoding the word of a sentence firstly and apply the attention mechanism on them secondly resulting in a *sentence vector*. <br>
 **Document representation** is built in the same way, only having the sentence vector of each sentence of the document as input.
 
 ### References
