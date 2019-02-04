@@ -104,12 +104,14 @@ Contrary to the most text classification implementations, HAN also considers the
 Summarizing, HAN tries to find a solution to these problems, previous works did not consider:
 * Not every word in a sentence and every sentence in a document is equally important to extract the main information from the document.
 * To extract the main information in changing contexts, it is not enough to work with the single information of each word, but to get the context of all sentences and word interactions. 
+
 In this way, HAN performs better in predicting the class of a given document. <br>
 To start from scratch, have a look at this example:
 <center>
  <img width="50%" src="reviewyelp.png">
  [1](#references)
 </center>
+
 
 Here we have a review from yelp that consists of five sentences. The highlighted sentences in red deliver stronger meaning compared to the others and inside, the words *delicious* and *amazing* contribute the most in attributing the positive attitude contained in this review. HAN predicts pretty well the most relevant information as it assorts with what we would intuitively gain from this review. <br>
 
@@ -133,7 +135,7 @@ The model consists of
 
 ### Word Level
 
-<img width="80%" src="han_word.png">
+<img width="100%" src="han_word.png">
 
 * As input we have structured tokens **w_{it}**, that is word i per sentence t. We do not keep all words in a sentence. Learn more about that in section [data preprocessing](data-preprocessing). 
 * Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' vectors to each token. In this way, words are represented numerically as a projection of the word in a continuous vector space. <br>
