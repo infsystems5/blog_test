@@ -18,7 +18,9 @@ description = "Hierarchical Attention Network - An Introduction"
 
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
-<img src="intro1.png" width="100%">
+<center>
+<img src="intro1.png" width="85%">
+</center>
 
 ## Outline
 * [Introduction](#introduction)
@@ -144,7 +146,7 @@ The model consists of
 * Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' multidimensional vectors **W_e*w_ij** to each token. In this way, words are represented numerically as **x_it** as a projection of the word in a continuous vector space. <br>
 	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training. <br>
   <center>
-  <img width="38%" src="x_it.JPG">
+  <img width="25%" src="x_it.JPG">
   </center>
 
 #### Word Encoder
@@ -153,18 +155,18 @@ The model consists of
 	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotations* per word. <br>
 	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_it**.  <br>
   <center>
-  <img width="30%" src="h_it.JPG">
+  <img width="25%" src="h_it.JPG">
   </center>
 
 #### Word Attention
 
 * Those annotations h_it build the base for the attention mechanism which starts with another hidden layer, a one-layer Multilayer Perceptron. Goal is to let the model learn through training with randomly initialized weights and biases. Those 'improved' annotations are then represented by **u_it**. Furthermore, this layer ensures that the network does not falter with a tanh function. This function 'corrects' input values to being between -1 and 1 and also maps zeros to near-zeros. <br>
   <center>
-  <img width="30%" src="u_it.JPG">
+  <img width="25%" src="u_it.JPG">
   </center>
 * Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function. <br>
   <center>
-  <img width="28%" src="alpha_it.JPG">
+  <img width="22%" src="alpha_it.JPG">
   </center>
 * The sum of these importance weights concatenated with the previously calculated context annotations is called sentence vector **s_i** <br>
   <center>
@@ -181,7 +183,7 @@ The model consists of
 * Find all formula for sentence level below.
 <center>
 <img width="30%" src="h_i.JPG">
-<img width="17%" src="h_i1.JPG">
+ <img width="17%" src="h_i1.JPG">
 <img width="28%" src="ualphav.JPG">
 </center>
 
