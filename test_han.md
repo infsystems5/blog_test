@@ -150,22 +150,22 @@ The model consists of
 	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotations* per word. <br>
 	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_it**.  <br>
   <center>
-  <img width="38%" src="h_it.JPG">
+  <img width="30%" src="h_it.JPG">
   </center>
 
 #### Word Attention
 
 * Those annotations h_it build the base for the attention mechanism which starts with another hidden layer, a one-layer Multilayer Perceptron. Goal is to let the model learn through training with randomly initialized weights and biases. Those 'improved' annotations are then represented by **u_it**. Furthermore, this layer ensures that the network does not falter with a tanh function. This function 'corrects' input values to being between -1 and 1 and also maps zeros to near-zeros. <br>
   <center>
-  <img width="38%" src="u_it.JPG">
+  <img width="30%" src="u_it.JPG">
   </center>
 * Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function. <br>
   <center>
-  <img width="32%" src="alpha_it.JPG">
+  <img width="28%" src="alpha_it.JPG">
   </center>
 * The sum of these importance weights concatenated with the previously calculated context annotations is called sentence vector **s_i** <br>
   <center>
-  <img width="25%" src="s_i.JPG">
+  <img width="17%" src="s_i.JPG">
   </center>
 
 ### Sentence Level
