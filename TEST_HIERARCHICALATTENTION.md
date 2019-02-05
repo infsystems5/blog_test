@@ -195,9 +195,18 @@ The model consists of
 
 As the package [Keras](https://keras.io/) is 'a high-level neural networks API' extremely useful for deep learning problems, we recommend to install it in an own python environment.
 
-<script src="https://gist.github.com/kraenkem/b29b80ae4283c95328ef658fbaa2b82c.js"> </script>
+<script src="https://gist.github.com/kraenkem/b29b80ae4283c95328ef658fbaa2b82c.js"></script> libraries
 
 ### Data Preprocessing
+
+To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 billion reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a billion reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
+We combine the review columns to one column to consider them together in the model and keep only the necessary columns.
+
+=============script first_steps
+
+Words have to be lemmatized to ensure that not every single typo or related term is handled by itself. Additionally, so-called stop words are filtered out. In our case, that is mainly prepositions like *as* or *to* that do not contribute to the meaning of the text.
+
+=================scr clean_string
 
 
 
