@@ -195,7 +195,7 @@ The model consists of
 
 As the package [Keras](https://keras.io/) is 'a high-level neural networks API' extremely useful for deep learning problems, we recommend to install it in an own python environment.
 
-<script src="https://gist.github.com/kraenkem/dee626bb58952d918c043dabc127db51.js?file=libraries"></script>
+<script src="https://gist.github.com/kraenkem/dee626bb58952d918c043dabc127db51.js?file=libraries.ipynb"></script>
 
 libraries
 
