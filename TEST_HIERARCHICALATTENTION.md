@@ -216,7 +216,7 @@ We combine the review columns to one column to consider them together in the mod
 
 ============ scr embedding
 
-For a better comprehension of what those embeddings mean, have a closer a look at an example token. *Great* is already described by 100 values in vector spaces computed by for instance nearest neighbors.
+For a better comprehension of what those embeddings mean, have a closer a look at an example token. *Great* is described by 100 values in vector spaces computed by for instance nearest neighbors.
 
 ===============0 scr example embedding_matrix
 
@@ -224,7 +224,7 @@ Now, we can already define our first layer with Keras's *Embedding*:
 
 ================= scr embedding_layer
 
-In a last step of data preprocessing, we want to define our train, validation and test data set. For that we define a function **split_df** which ensures that all sets are balanced hence they have the same ratio for each class as the full data set. Without this predefined grouping by star rating it could happen that the model only trains on the most occurring rating.
+In a last step of data preprocessing, we want to set a train, validation and test data set. For that we define a function **split_df** which ensures that all sets are balanced hence they have the same ratio for each class as the full data set. Without this predefined grouping by star rating. it could happen that the model only trains on the most occurring rating.
 
 ================ scr split_df
 
@@ -234,7 +234,7 @@ Before we can concatenate the layers of the network in Keras, we need to build t
 
 ======================= scr attlayer
 
-<img src="img/only_att.png" width="95%">
+<img src="img/only_att.png" width="88%">
 
 The figure shows attention on word level as well as the class **AttentionLayer**, however, the layer is applied successively on first word and then sentence level.
 * **init** initializes variables from a uniform distribution. Also, we set *supports_masking = True* because the network needs fixed input lengths. If some inputs are shorter than maximum input length a mask will be created initialized with 0. Then the mask will be 'filled up' with 1 to positions where the input has values in. This is further defined in the next functions.
