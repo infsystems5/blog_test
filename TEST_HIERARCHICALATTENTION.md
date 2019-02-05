@@ -204,15 +204,15 @@ We combine the review columns to one column to consider them together in the mod
 
 =============script first_steps
 
-Words have to be lemmatized to ensure that not every single typo or related term is handled by itself. Additionally, so-called stop words are filtered out. In our case, that is mainly prepositions like *as* or *to* that do not contribute to the meaning of the text. Have a look at function cleanString.
+**Words have to be lemmatized** to ensure that not every single typo or related term is handled by itself. Additionally, so-called stop words are filtered out. In our case, that is mainly prepositions like *as* or *to* that do not contribute to the meaning of the text. Have a look at function **cleanString**.
 
 =================scr clean_string
 
-After that we can tokenize the given sentences. We set the maximum number of words to keep equal to 200,000.
+**After that we can tokenize** the given sentences. We set the maximum number of words to keep equal to 200,000.
 
 ================scr tokenization
 
-For vectorization of our tokens we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling.
+**For vectorization of our tokens** we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling.
 
 ============ scr embedding
 
@@ -220,7 +220,35 @@ For a better comprehension of what those embeddings mean, have a closer a look a
 
 ===============0 scr example embedding_matrix
 
-In a last step of data preprocessing, we want to define our train, validation and test data set. 
+Now, we can already define our first layer with Keras's *Embedding*:
+
+================= scr embedding_layer
+
+In a last step of data preprocessing, we want to define our train, validation and test data set. For that we define a function **split_df** which ensures that all sets are balanced hence they have the same ratio for each class as the full data set. Without this predefined grouping by star rating it could happen that the model only trains on the most occurring rating.
+
+================ scr split_df
+
+### Attention Mechanism
+
+Before we can concatenate the layers of the network in Keras, we need to build the attention mechanism. Keras has a class '[Writing your own Keras layer](https://keras.io/layers/writing-your-own-keras-layers/)'. Here you are given some useful functions to implement attention. For better understanding, again have a look at the modeled attention mechanism.
+
+======================= scr attlayer
+
+<img src="img/only_att.png" width="95%">
+
+The figure shows attention on word level as well as the class **AttentionLayer**, however, the layer is applied successively on first word and then sentence level.
+* **init** initializes variables from a uniform distribution. Also, we set *supports_masking = True* because the network needs fixed input lengths. If some inputs are shorter than maximum input length a mask will be created initialized with 0. Then the mask will be 'filled up' with 1 to positions where the input has values in. This is further defined in the next functions.
+* **build** defines the weights. We set *len(input_shape) == 3* as we get a 3d tensor from the previous layers.
+* **call** builds the attention mechanism itself. As you can see, we have h_it, the context annotations, as input and get the sum of importance weights, hence sentence vector s_i, as output. In between, the current variable is reduced by the last dimension and expanded again because masking needs a binary tensor.
+
+### Model
+
+Congrats, you made it through a huge mass of theoretical input. Now, let's finally see how the model performs. Some last little hints:
+* Combine all layers on word and sentence level.
+* Word level output is sentence level input.
+* *TimeDistributed* applies all word level layers on each sentence.
+* We want to have an output dimensionality of GRU equal to 50, because running it forwards and backwards returns 100 dimensions - which is the dimensionality of our inputs.
+* *Dropout* is a regularizer to prevent overfitting by turning off a number of neurons in every layer - 0.5 gets a high variance, but you can play around with this as well as with other parameters.
 
 ### References
 
