@@ -244,8 +244,7 @@ The figure shows attention on word level as well as the class **AttentionLayer**
 ### Model
 
 Congrats, you made it through a huge mass of theoretical input. Now, let's finally see how the model performs. Some last little hints:
-* Combine all layers on word and sentence level.
-* Word level output is sentence level input.
+* The layers have to be combined on word and sentence level.
 * *TimeDistributed* applies all word level layers on each sentence.
 * We want to have an output dimensionality of GRU equal to 50, because running it forwards and backwards returns 100 dimensions - which is the dimensionality of our inputs.
 * *Dropout* is a regularizer to prevent overfitting by turning off a number of neurons in every layer - 0.5 gets a high variance, but you can play around with this as well as with other parameters.
