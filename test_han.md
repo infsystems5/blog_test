@@ -19,7 +19,7 @@ description = "Hierarchical Attention Network - An Introduction"
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
 <center>
-<img src="intro1.png" width="85%">
+<img src="intro1.png" width="90%">
 </center>
 
 ## Outline
@@ -30,6 +30,7 @@ description = "Hierarchical Attention Network - An Introduction"
   * [Architecture of Hierarchical Attention Network](#architecture-of-hierarchical-attention-network)
   * [Word Level](#word-level)
   * [Sentence Level](#sentence-level)
+  * [Implementation](#implementation)
 * [Applications](#applications)
 * [News Classification](#news-classification)
 * [Take Away](#take-away)
@@ -146,7 +147,7 @@ The model consists of
 * Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' multidimensional vectors **W_e*w_ij** to each token. In this way, words are represented numerically as **x_it** as a projection of the word in a continuous vector space. <br>
 	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training. <br>
   <center>
-  <img width="25%" src="x_it.JPG">
+  <img width="21%" src="x_it.JPG">
   </center>
 
 #### Word Encoder
@@ -166,11 +167,11 @@ The model consists of
   </center>
 * Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function. <br>
   <center>
-  <img width="22%" src="alpha_it.JPG">
+  <img width="19%" src="alpha_it.JPG">
   </center>
 * The sum of these importance weights concatenated with the previously calculated context annotations is called sentence vector **s_i** <br>
   <center>
-  <img width="17%" src="s_i.JPG">
+  <img width="15%" src="s_i.JPG">
   </center>
 
 ### Sentence Level
@@ -181,11 +182,20 @@ The model consists of
 * Trainable weights and biases are again outside randomly initialized.
 * The final output is a document vector **v** which can be used as features for document classification.
 * Find all formula for sentence level below.
+
 <center>
 <img width="30%" src="h_i.JPG">
  <img width="17%" src="h_i1.JPG">
 <img width="28%" src="ualphav.JPG">
 </center>
+
+## Implementation
+
+### Import libraries
+
+As the package [Keras](https://keras.io/) is 'a high-level neural networks API' extremely useful for deep learning problems, we recommend to install it in an own python environment.
+
+<script src="https://gist.github.com/kraenkem/d6b1a27c82dc45efb17a801f8498a065.js"></script>
 
 ### Data Preprocessing
 
