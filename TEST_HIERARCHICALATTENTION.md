@@ -197,8 +197,6 @@ As the package [Keras](https://keras.io/) is 'a high-level neural networks API' 
 
 <script src="https://gist.github.com/kraenkem/dee626bb58952d918c043dabc127db51.js?file=libraries.ipynb"></script>
 
-libraries
-
 ### Data Preprocessing
 
 To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 billion reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a billion reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
@@ -206,11 +204,23 @@ We combine the review columns to one column to consider them together in the mod
 
 =============script first_steps
 
-Words have to be lemmatized to ensure that not every single typo or related term is handled by itself. Additionally, so-called stop words are filtered out. In our case, that is mainly prepositions like *as* or *to* that do not contribute to the meaning of the text.
+Words have to be lemmatized to ensure that not every single typo or related term is handled by itself. Additionally, so-called stop words are filtered out. In our case, that is mainly prepositions like *as* or *to* that do not contribute to the meaning of the text. Have a look at function cleanString.
 
 =================scr clean_string
 
+After that we can tokenize the given sentences. We set the maximum number of words to keep equal to 200,000.
 
+================scr tokenization
+
+For vectorization of our tokens we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling.
+
+============ scr embedding
+
+For a better comprehension of what those embeddings mean, have a closer a look at an example token. *Great* is already described by 100 values in vector spaces computed by for instance nearest neighbors.
+
+===============0 scr example embedding_matrix
+
+In a last step of data preprocessing, we want to define our train, validation and test data set. 
 
 ### References
 
