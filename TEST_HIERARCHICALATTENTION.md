@@ -114,7 +114,7 @@ Summarizing, HAN tries to find a solution to these problems, previous works did 
 In this way, HAN performs better in predicting the class of a given document. <br>
 To start from scratch, have a look at this example:
 <center>
- <img width="50%" src="reviewyelp.png">
+ <img width="50%" src="img/reviewyelp.png">
  [1](#references)
 </center>
 
@@ -125,7 +125,7 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 
 **This is how the architecture** of HAN looks like:
 <center>
- <img width="60%" src="han_architecture.jpg">
+ <img width="60%" src="img/han_architecture.jpg">
  <p>[1](#references)</p>
 </center>
 
@@ -141,13 +141,13 @@ The model consists of
 
 ### Word Level
 
-<img width="100%" src="han_word.png">
+<img width="100%" src="img/han_word.png">
 
 * As input we have structured tokens **w_it**, that is word i per sentence t. We do not keep all words in a sentence. Learn more about that in section [data preprocessing](data-preprocessing).
 * Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' multidimensional vectors **W_e*w_ij** to each token. In this way, words are represented numerically as **x_it** as a projection of the word in a continuous vector space. <br>
 	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training. <br>
   <center>
-  <img width="21%" src="x_it.JPG">
+  <img width="21%" src="img/x_it.JPG">
   </center>
 
 #### Word Encoder
@@ -156,27 +156,27 @@ The model consists of
 	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotations* per word. <br>
 	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_it**.  <br>
   <center>
-  <img width="25%" src="h_it.JPG">
+  <img width="25%" src="img/h_it.JPG">
   </center>
 
 #### Word Attention
 
 * Those annotations h_it build the base for the attention mechanism which starts with another hidden layer, a one-layer Multilayer Perceptron. Goal is to let the model learn through training with randomly initialized weights and biases. Those 'improved' annotations are then represented by **u_it**. Furthermore, this layer ensures that the network does not falter with a tanh function. This function 'corrects' input values to being between -1 and 1 and also maps zeros to near-zeros. <br>
   <center>
-  <img width="25%" src="u_it.JPG">
+  <img width="25%" src="img/u_it.JPG">
   </center>
 * Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function. <br>
   <center>
-  <img width="19%" src="alpha_it.JPG">
+  <img width="19%" src="img/alpha_it.JPG">
   </center>
 * The sum of these importance weights concatenated with the previously calculated context annotations is called sentence vector **s_i** <br>
   <center>
-  <img width="15%" src="s_i.JPG">
+  <img width="15%" src="img/s_i.JPG">
   </center>
 
 ### Sentence Level
 
-<img width="100%" src="han_sent.png">
+<img width="100%" src="img/han_sent.png">
 
 * Then the whole network is run on sentence level with basically the same procedure as on word level. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input. In addition, now we focus on the actual sentence i.
 * Trainable weights and biases are again outside randomly initialized.
@@ -184,9 +184,9 @@ The model consists of
 * Find all formula for sentence level below.
 
 <center>
-<img width="30%" src="h_i.JPG">
- <img width="17%" src="h_i1.JPG">
-<img width="28%" src="ualphav.JPG">
+<img width="27%" src="img/h_i.JPG">
+ <img width="15%" src="img/h_i1.JPG">
+<img width="26%" src="img/ualphav.JPG">
 </center>
 
 ## Implementation
@@ -195,9 +195,11 @@ The model consists of
 
 As the package [Keras](https://keras.io/) is 'a high-level neural networks API' extremely useful for deep learning problems, we recommend to install it in an own python environment.
 
-<script src="https://gist.github.com/kraenkem/b29b80ae4283c95328ef658fbaa2b82c.js"></script>
+<script src="https://gist.github.com/kraenkem/b29b80ae4283c95328ef658fbaa2b82c.js"> </script>
 
 ### Data Preprocessing
+
+
 
 ### References
 
