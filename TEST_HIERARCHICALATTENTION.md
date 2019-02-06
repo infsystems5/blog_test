@@ -25,13 +25,13 @@ description = "Hierarchical Attention Network - An Introduction"
 ## Outline
 * [Introduction](#introduction)
 * [Text Classification](#text-classification)
+* [Applications](#applications)
 * [Literature Review](#literature-review)
 * [Text Classification with Hierarchical Attention Network](#text-classification-with-hierarchical-attention-network)
   * [Architecture of Hierarchical Attention Network](#architecture-of-hierarchical-attention-network)
   * [Word Level](#word-level)
   * [Sentence Level](#sentence-level)
   * [Implementation](#implementation)
-* [Applications](#applications)
 * [News Classification](#news-classification)
 * [Take Away](#take-away)
 
@@ -40,6 +40,34 @@ description = "Hierarchical Attention Network - An Introduction"
 **Evaluating all of the textual data manually** is very time consuming and strenuous. A more efficient way to extract important information from it is text classification. <br>
 Text classification is a fundamental task in natural language processing. The goal is to assign unstructured documents (e.g. reviews, emails, posts, website contents etc.) to classes, that is, to classify them. Such classes can be review scores like star ratings, spam or topic labeling. <br>
 Essentially, text classification can be used whenever there are certain tags to map to a large amount of textual data. To learn the how to classify, we need to build classifiers which are obtained from labeled examples. In this way, the process of examining information becomes automated and thus simpler.
+
+# Applications
+
+Text classification finds a variety of application possibilities due to the large amount of data which can be interpreted.
+
+### Topic Labeling
+
+By topic labeling every kind of assigning text to topics or categories is meant. This can also include unstructured texts. The main goal is to extract generic tags. Topic labeling is the most important and widest used application of text classification. It has a few sub applications.
+
+**Marketing**: The 'new' marketing has moved from search engines to social media platforms where real communication between brands and users take place. Users don not only review products but also discuss them with other users. With text classification, businesses can classify those products which have great consideration. Based on this, trends and customer types are examined.
+
+**Reviews**: With text classification businesses can easily find aspects on which customers disagree with their services or products. They do not have to go through low rating reviews by themselves but can detect categories in which their product did or did not satisfy.  
+
+**Tagging content**: Platforms like blogs live from publications of many people or pool products from other websites. So, if these are not tagged thoroughly in the first place, there might be the need to tag these texts or products in order to simplify navigation through the website. User experience is improved by this application too. In addition, good classified and tagged websites are more likely to appear in search engines like google. <br>
+Mentioning google: If you're using gmail, your mails are already automated filtered and labeled by google's text classification algorithms.
+
+Others: Like classification of old, not digitalized texts, for instance for libraries.
+
+* Topic Labeling
+  * Marketing: Figure out trends, personalize products
+  * Product reviews: Examine evaluated features of a product
+  * Tagging content: Simplify navigation through websites, improve SEO
+  * Others
+* Sentiment Analysis
+* Spam Detection
+* Smart Replies
+
+
 
 # Literature Review
 ## How do different methods perform in text classification problems?
@@ -66,7 +94,7 @@ Abbr. | Explanation
 SMART | System for the Mechanical Analysis and Retrieval of Text
 SG | Scatter/Gather
 
-With the improvement of the user-friendliness and related spread of internet usage, automated classification of growing numbers of data became important. Several supervised respectively semi-supervised (where the class information are learned from labeled data) are shown in the next table. <br>
+With the improvement of the user-friendliness and related spread of internet usage, automated classification of growing numbers of data became important. Several supervised respectively semi-supervised methods (where the class information are learned from labeled data) are shown in the next table. <br>
 Since we use a neural network, the comparison with other neural networks is prior for us. Of course, there are several different implementations of convolutional and recurrent neural networks, below are only mentioned the most 'innovative'.
 
 **(Semi-) Supervised**
@@ -115,7 +143,7 @@ In this way, HAN performs better in predicting the class of a given document. <b
 To start from scratch, have a look at this example:
 <center>
  <img width="50%" src="img/reviewyelp.png">
- [1](#references)
+ Yang et al. 2016
 </center>
 
 <br>
@@ -126,7 +154,7 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 **This is how the architecture** of HAN looks like:
 <center>
  <img width="60%" src="img/han_architecture.jpg">
- <p>[1](#references)</p>
+ Yang et al. 2016
 </center>
 
 First, the network considers the hierarchical structure of documents by constructing a document representation by building representations of sentences and then aggregating those into a document representation. <br>
@@ -199,7 +227,7 @@ As the package [Keras](https://keras.io/) is 'a high-level neural networks API' 
 
 ### Data Preprocessing
 
-To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 billion reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a billion reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
+To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 million reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a million reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
 We combine the review columns to one column to consider them together in the model and keep only the necessary columns.
 
 =============script first_steps
@@ -212,12 +240,13 @@ We combine the review columns to one column to consider them together in the mod
 
 ================scr tokenization
 
-**For vectorization of our tokens** we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling.
+**For vectorization of our tokens** we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling. Unfortunately, we therefore can only remain 20,056 words to proceed. This will influence performance of our model. But we will come to this later.
 
 ============ scr embedding
 
-For a better comprehension of what those embeddings mean, have a closer a look at an example token. *Great* is described by 100 values in vector spaces computed by for instance nearest neighbors.
+For a better comprehension of what those embeddings mean, have a closer a look at an example sentence and a single token. *Great* is described by 100 values in vector spaces computed by for instance nearest neighbors.
 
+=============== display ----> in einem script stück
 ===============0 scr example embedding_matrix
 
 Now, we can already define our first layer with Keras's *Embedding*:
@@ -227,6 +256,7 @@ Now, we can already define our first layer with Keras's *Embedding*:
 In a last step of data preprocessing, we want to set a train, validation and test data set. For that we define a function **split_df** which ensures that all sets are balanced hence they have the same ratio for each class as the full data set. Without this predefined grouping by star rating. it could happen that the model only trains on the most occurring rating.
 
 ================ scr split_df
+================= scr histogram full and train set
 
 ### Attention Mechanism
 
@@ -249,6 +279,30 @@ Congrats, you made it through a huge mass of theoretical input. Now, let's final
 * We want to have an output dimensionality of GRU equal to 50, because running it forwards and backwards returns 100 dimensions - which is the dimensionality of our inputs.
 * *Dropout* is a regularizer to prevent overfitting by turning off a number of neurons in every layer - 0.5 gets a high variance, but you can play around with this as well as with other parameters.
 
-### References
+=============================scr model
 
-1 Yang et al. Hierarchical Attention Networks for Document Classification. 2016
+**Dense** implements a last layer for actual document classification. The document vector runs again with outside weights and biases through a softmax function. Softmax makes the output readable by giving the probability of belonging to a predefined class. We end up with 505 dense parameters (5 units x 100 dimensions + 5 biases).
+
+**We train** the model throughout a relatively small number of epochs of 7 since our input data are already pre-trained and will overfit after too much epochs, also because the batch size of 32 works with a large number of inputs due to our large data set. Note that you have to train reviews **x** against labels **y** (in this case the 5-star ratings).
+
+================00scr history
+======================= scr evaluation
+========================= scr plots
+
+**Model evaluation** is with 69 % quite high how a comparison with the results from Yang et al. themselves as well as from others shows (see table below).
+**Also history plots** show that the training data set perform pretty well. Still, this is unfortunately not supported by the validation data set. This might be because of the small number of words we could proceed after the embedding layer which filtered out almost 70 % of all tokens due to misspelling. This might be improved with an even smaller batch and epoch size, or with a better, less mistaken data set.
+
+<center>
+<img src="img/doc_class_comp.JPG" width="90%">
+Document Classification, in percentage. Yang et al. 2016
+</center>
+
+
+
+# Take Away
+
+##### What is relevant to remember about text classification with hierarchical attention network?
+
+* hierarchical structure of documents (document - sentence - word)
+* attention on contexts of sentences and words
+* by considering changing contexts, HAN performs better for classification problems
