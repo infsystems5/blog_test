@@ -12,7 +12,13 @@ description = "Hierarchical Attention Network - An Introduction"
 # Text Classification with Hierarchical Attention Network
 ## How to assign documents to classes or topics
 
-#### Authors: Hee-Eun Lee, Maria Kränkel - Seminar Information System 18/19
+#### Authors: Maria Kränkel, Hee-Eun Lee - Seminar Information System 18/19
+_____________________________________________________________________
+
+After reading this blog post you will know:
+* What text classification is and what it is used for
+* How to classify documents with a hierarchical attention neural network
+* How to implement a hierarchical attention network
 
 # Introduction
 
