@@ -75,6 +75,12 @@ Text classification is already used for simpler applications like **filtering sp
 But before going deeper into this, let's have a look at what others did:
 
 The basics of all text classification problems lie in so-called Information Retrieval (IR) methods which started to be developed in the early 1970s. These first methods were unsupervised, that is, they try to find information from a given text document without classifying it or assigning labels to it in any kind. <br>
+
+**Basic algorithms for IR** are:
+  * Bag of Words: represents texts by frequency of appearing words
+  * Term Frequency / Inverse Document Frequency: sets term frequency and inverse document frequency and in this way represents texts by relevance of appearing words
+  * N-grams: a set of co-occurring words (e.g. names) 
+
 Here you can see the most important steps in unsupervised text classification:
 
 **Unsupervised**
@@ -206,14 +212,21 @@ The model consists of
 
 <img width="100%" src="img/han_sent.png">
 
-* Then the whole network is run on sentence level with basically the same procedure as on word level. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input. In addition, now we focus on the actual sentence i.
+* Then the whole network is run on sentence level with basically the same procedure as on word level but now we focus on the actual sentence i. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input.
+
+#### Sentence Encoder
+
+* Contexts of sentences are summarized with a bidirectional GRU by going through the document forwards and backwards.
+  <center>
+  <img width="27%" src="img/h_i.JPG">
+    <img width="15%" src="img/h_i1.JPG">
+  </center>
+
+#### Sentence Attention
+
 * Trainable weights and biases are again outside randomly initialized.
 * The final output is a document vector **v** which can be used as features for document classification.
-* Find all formula for sentence level below.
-
 <center>
-<img width="27%" src="img/h_i.JPG">
- <img width="15%" src="img/h_i1.JPG">
 <img width="26%" src="img/ualphav.JPG">
 </center>
 
@@ -297,6 +310,7 @@ Congrats, you made it through a huge mass of theoretical input. Now, let's final
 Document Classification, in percentage. Yang et al. 2016
 </center>
 
+Note: HN-AVE and -MAX refers to hierarchical network with averaging and max-pooling methods, HN-ATT refers to hierarchical attention network described in this blog.
 
 
 # Take Away
