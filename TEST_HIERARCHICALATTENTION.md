@@ -2,6 +2,8 @@
 title = "Text Classification with Hierarchical Attention Network"
 date = '2019-02-08'
 tags = [ "Deep Learning", "Neural Networks", "Class18/19", "Hierarchical Network", "NLP", "Classification", "Attention"]
+categories = ["Course projects"]
+banner = "img/seminar/HAN_img/test_banner.jpg"
 author = "Seminar Information Systems (WS18/19)"
 disqusShortname = "https-humbodt-wi-github-io-blog"
 description = "Hierarchical Attention Network - An Introduction"
@@ -14,9 +16,16 @@ description = "Hierarchical Attention Network - An Introduction"
 
 # Introduction
 
+<<<<<<< HEAD
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rate with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
+=======
+**Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
+<br>
+<br>
+>>>>>>> 0ccaadaf8b4617d826e772935d99c027dc028fb9
 <center>
+<img src="blog/img/seminar/HAN_img/intro1.png" width="90%">
 </center>
 
 ## Outline
@@ -111,6 +120,7 @@ Summarizing, HAN tries to find a solution to these problems, previous works did 
 In this way, HAN performs better in predicting the class of a given document. <br>
 To start from scratch, have a look at this example:
 <center>
+ <img width="50%" src="blog/img/seminar/HAN_img/reviewyelp.png">
  [1](#references)
 </center>
 
@@ -121,6 +131,7 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 
 **This is how the architecture** of HAN looks like:
 <center>
+ <img width="60%" src="blog/img/seminar/HAN_img/han_architecture.jpg">
  <p>[1](#references)</p>
 </center>
 
@@ -136,11 +147,13 @@ The model consists of
 
 ### Word Level
 
+<img width="100%" src="blog/img/seminar/HAN_img/han_word.png">
 
 * As input we have structured tokens **w_it**, that is word i per sentence t. We do not keep all words in a sentence. Learn more about that in section [data preprocessing](data-preprocessing).
 * Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' multidimensional vectors **W_e*w_ij** to each token. In this way, words are represented numerically as **x_it** as a projection of the word in a continuous vector space. <br>
 	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training. <br>
   <center>
+  <img width="21%" src="blog/img/seminar/HAN_img/x_it.JPG">
   </center>
 
 #### Word Encoder
@@ -149,22 +162,27 @@ The model consists of
 	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotations* per word. <br>
 	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_it**.  <br>
   <center>
+  <img width="25%" src="blog/img/seminar/HAN_img/h_it.JPG">
   </center>
 
 #### Word Attention
 
 * Those annotations h_it build the base for the attention mechanism which starts with another hidden layer, a one-layer Multilayer Perceptron. Goal is to let the model learn through training with randomly initialized weights and biases. Those 'improved' annotations are then represented by **u_it**. Furthermore, this layer ensures that the network does not falter with a tanh function. This function 'corrects' input values to being between -1 and 1 and also maps zeros to near-zeros. <br>
   <center>
+  <img width="25%" src="blog/img/seminar/HAN_img/u_it.JPG">
   </center>
 * Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function. <br>
   <center>
+  <img width="19%" src="blog/img/seminar/HAN_img/alpha_it.JPG">
   </center>
 * The sum of these importance weights concatenated with the previously calculated context annotations is called sentence vector **s_i** <br>
   <center>
+  <img width="15%" src="blog/img/seminar/HAN_img/s_i.JPG">
   </center>
 
 ### Sentence Level
 
+<img width="100%" src="blog/img/seminar/HAN_img/han_sent.png">
 
 * Then the whole network is run on sentence level with basically the same procedure as on word level. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input. In addition, now we focus on the actual sentence i.
 * Trainable weights and biases are again outside randomly initialized.
@@ -172,6 +190,9 @@ The model consists of
 * Find all formula for sentence level below.
 
 <center>
+<img width="27%" src="blog/img/seminar/HAN_img/h_i.JPG">
+ <img width="15%" src="blog/img/seminar/HAN_img/h_i1.JPG">
+<img width="26%" src="blog/img/seminar/HAN_img/ualphav.JPG">
 </center>
 
 ## Implementation
@@ -189,24 +210,94 @@ We combine the review columns to one column to consider them together in the mod
 
 =============script first_steps
 
+**Words have to be lemmatized** to ensure that not every single typo or related term is handled by itself. Additionally, so-called stop words are filtered out. In our case, that is mainly prepositions like *as* or *to* that do not contribute to the meaning of the text. Have a look at function **cleanString**.
 
 =================scr clean_string
 
+**After that we can tokenize** the given sentences. We set the maximum number of words to keep equal to 200,000.
 
 ================scr tokenization
 
+**For vectorization of our tokens** we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling.
 
 ============ scr embedding
 
-For a better comprehension of what those embeddings mean, have a closer a look at an example token. *Great* is already described by 100 values in vector spaces computed by for instance nearest neighbors.
 For a better comprehension of what those embeddings mean, have a closer look at an example token. *Great* is described by 100 values in vector spaces computed by for instance nearest neighbors.
 
 ===============0 scr example embedding_matrix
 
-In a last step of data preprocessing, we want to define our train, validation and test data set. 
+Now, we can already define our first layer with Keras's *Embedding*:
+
+================= scr embedding_layer
+
+In a last step of data preprocessing, we want to set a train, validation and test data set. For that we define a function **split_df** which ensures that all sets are balanced hence they have the same ratio for each class as the full data set. Without this predefined grouping by star rating. it could happen that the model only trains on the most occurring rating.
+
+================ scr split_df
+
+### Attention Mechanism
+
+Before we can concatenate the layers of the network in Keras, we need to build the attention mechanism. Keras has a class '[Writing your own Keras layer](https://keras.io/layers/writing-your-own-keras-layers/)'. Here you are given some useful functions to implement attention. For better understanding, again have a look at the modeled attention mechanism.
+
+======================= scr attlayer
+
+<img src="img/seminar/HAN_img/only_att.png" width="88%">
+
+The figure shows attention on word level as well as the class **AttentionLayer**, however, the layer is applied successively on first word and then sentence level.
+* **init** initializes variables from a uniform distribution. Also, we set *supports_masking = True* because the network needs fixed input lengths. If some inputs are shorter than maximum input length a mask will be created initialized with 0. Then the mask will be 'filled up' with 1 to positions where the input has values in. This is further defined in the next functions.
+* **build** defines the weights. We set *len(input_shape) == 3* as we get a 3d tensor from the previous layers.
+* **call** builds the attention mechanism itself. As you can see, we have h_it, the context annotations, as input and get the sum of importance weights, hence sentence vector s_i, as output. In between, the current variable is reduced by the last dimension and expanded again because masking needs a binary tensor.
+
+### Model
+
+Congrats, you made it through a huge mass of theoretical input. Now, let's finally see how the model performs. Some last little hints:
+* The layers have to be combined on word and sentence level.
+* *TimeDistributed* applies all word level layers on each sentence.
+* We want to have an output dimensionality of GRU equal to 50, because running it forwards and backwards returns 100 dimensions - which is the dimensionality of our inputs.
+* *Dropout* is a regularizer to prevent overfitting by turning off a number of neurons in every layer - 0.5 gets a high variance, but you can play around with this as well as with other parameters.
+
+<br>
+<br>
+<br>
+
+# News Classification
+
+To further display the attention mechanism, we also implemented the HAN on news articles to be able to classify them into categories, as well as to gain short summaries of articles by extracting the most important sentences using sentence attention weights. We used a publicly available dataset from the British Broadcasting Corporation (BBC) which contains 2225 news articles from the BBC news website from 2004-2005. The news articles are sorted after five different categories: business, entertainment, politics, sport, and tech. 
+
+### Parameters
+===========================scr parameters
+As news articles tend to be longer than product reviews on average, we adjusted the parameters and increased the maximum number of sentences in one document and the maximum number of words in each sentence.
+
+### HAN Model
+==========================scr HAN Model
+
+(show training plots? model accuracy and loss?)
+
+========================= scr Test
+Compared to the Amazon dataset, the BBC dataset exhibits a much higher accuracy rate. This is probably due to the fact that news articles do not have any grammar or spelling mistakes, while product reviews written by users just burst from them. Thus, the more mistakes there are in the dataset, the more words we lose and cannot take into consideration, as the preprocessing basically discards them.
+
+### Input new articles
+To access newly released articles from BBC, we need to scrape the BBC website and save the title and text which is then cleaned, as described in the preprocessing, and subsequently converted to a sequence of numbers. 
+====================== scr Input text
+
+### Sentence Attention Model
+Now, we need to build a new model to be able to extract the attention weights for each sentence. This is to identify the five most important sentences within a news article to put them together and create a short summary. 
+===================== scr Sentence Attention Model
+
+### Word Attention Model
+Additionally, we want to extract the usually hidden word attention weights as well for which we need to build another model. The words with the most attention serve as a good overview or framework for the article. 
+==================== scr Word Attention Model
+
+Words with most attention are used as new tags database can be created with taggs, summarized news articles
+
+<br>
+<br>
 
 ### References
 
 1 Yang, Z., Yang, D., Dyer, C., He, X., Smola, A., & Hovy, E. (2016). Hierarchical attention networks for document classification. Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.
+<<<<<<< HEAD
 
 
+<script src="https://gist.github.com/leeh1234/b10d56b2f4d5d866013ead66eac618f3.js"></script>
+=======
+>>>>>>> 0ccaadaf8b4617d826e772935d99c027dc028fb9
