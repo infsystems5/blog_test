@@ -13,17 +13,12 @@ description = "Hierarchical Attention Network - An Introduction"
 ## How to assign documents to classes or topics
 
 #### Authors: Maria Kränkel, Hee-Eun Lee - Seminar Information System 18/19
-_____________________________________________________________________
-
-After reading this blog post you will know:
-* What text classification is and what it is used for
-* How to classify documents with a hierarchical attention neural network
-* How to implement a hierarchical attention network
 
 # Introduction
 
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
-
+<br>
+<br>
 <center>
 <img src="img/intro1.png" width="90%">
 </center>
@@ -31,13 +26,13 @@ After reading this blog post you will know:
 ## Outline
 * [Introduction](#introduction)
 * [Text Classification](#text-classification)
-* [Applications](#applications)
 * [Literature Review](#literature-review)
 * [Text Classification with Hierarchical Attention Network](#text-classification-with-hierarchical-attention-network)
   * [Architecture of Hierarchical Attention Network](#architecture-of-hierarchical-attention-network)
   * [Word Level](#word-level)
   * [Sentence Level](#sentence-level)
   * [Implementation](#implementation)
+* [Applications](#applications)
 * [News Classification](#news-classification)
 * [Take Away](#take-away)
 
@@ -47,40 +42,12 @@ After reading this blog post you will know:
 Text classification is a fundamental task in natural language processing. The goal is to assign unstructured documents (e.g. reviews, emails, posts, website contents etc.) to classes, that is, to classify them. Such classes can be review scores like star ratings, spam or topic labeling. <br>
 Essentially, text classification can be used whenever there are certain tags to map to a large amount of textual data. To learn the how to classify, we need to build classifiers which are obtained from labeled examples. In this way, the process of examining information becomes automated and thus simpler.
 
-# Applications
-
-Text classification finds a variety of application possibilities due to the large amount of data which can be interpreted.
-
-### Topic Labeling
-
-By topic labeling every kind of assigning text to topics or categories is meant. This can also include unstructured texts. The main goal is to extract generic tags. Topic labeling is the most important and widest used application of text classification. It has a few sub applications.
-
-**Marketing**: The 'new' marketing has moved from search engines to social media platforms where real communication between brands and users take place. Users don not only review products but also discuss them with other users. With text classification, businesses can classify those products which have great consideration. Based on this, trends and customer types are examined.
-
-**Reviews**: With text classification businesses can easily find aspects on which customers disagree with their services or products. They do not have to go through low rating reviews by themselves but can detect categories in which their product did or did not satisfy.  
-
-**Tagging content**: Platforms like blogs live from publications of many people or pool products from other websites. So, if these are not tagged thoroughly in the first place, there might be the need to tag these texts or products in order to simplify navigation through the website. User experience is improved by this application too. In addition, good classified and tagged websites are more likely to appear in search engines like Google. <br>
-Mentioning Google: If you're using gmail, your mails are already automated filtered and labeled by Google's text classification algorithms.
-
-### Other Applications
-
-Another application is **sentiment analysis**. Imagine again how differently customers might rate a product. Someone could be disappointed about one single feature that they rate it low although they liked the overall product. Or ratings might be low due to bad customer service whilst the product itself is satisfying. Text classification helps to identify those criteria.
-Now, sentiment analysis predicts the sentiment towards a specific characteristic on base of text classification. This not only finds economic application but especially in sentiment analysis for social and political debates.
-
-Text classification is already used for simpler applications like **filtering spam**. Also, a team of Google invented a method called Smart Replies in 2016. This method takes emails as inputs, identifies the sentiment or topic of the mailed text and automatically generates short, complete responses.  
-
 # Literature Review
 ## How do different methods perform in text classification problems?
 **For our implementation of text classification**, we have applied a hierarchical attention network, a classification method from Yang and others from 2016. The reason they developed it, although there are already well working neural networks for text classification, is because they wanted to pay attention to certain characteristics of document structures which have not been considered previously. <br>
 But before going deeper into this, let's have a look at what others did:
 
 The basics of all text classification problems lie in so-called Information Retrieval (IR) methods which started to be developed in the early 1970s. These first methods were unsupervised, that is, they try to find information from a given text document without classifying it or assigning labels to it in any kind. <br>
-
-**Basic algorithms for IR** are:
-  * Bag of Words: represents texts by frequency of appearing words
-  * Term Frequency / Inverse Document Frequency: sets term frequency and inverse document frequency and in this way represents texts by relevance of appearing words
-  * N-grams: a set of co-occurring words (e.g. names) 
-
 Here you can see the most important steps in unsupervised text classification:
 
 **Unsupervised**
@@ -100,7 +67,7 @@ Abbr. | Explanation
 SMART | System for the Mechanical Analysis and Retrieval of Text
 SG | Scatter/Gather
 
-With the improvement of the user-friendliness and related spread of internet usage, automated classification of growing numbers of data became important. Several supervised respectively semi-supervised methods (where the class information are learned from labeled data) are shown in the next table. <br>
+With the improvement of the user-friendliness and related spread of internet usage, automated classification of growing numbers of data became important. Several supervised respectively semi-supervised (where the class information are learned from labeled data) are shown in the next table. <br>
 Since we use a neural network, the comparison with other neural networks is prior for us. Of course, there are several different implementations of convolutional and recurrent neural networks, below are only mentioned the most 'innovative'.
 
 **(Semi-) Supervised**
@@ -149,7 +116,7 @@ In this way, HAN performs better in predicting the class of a given document. <b
 To start from scratch, have a look at this example:
 <center>
  <img width="50%" src="img/reviewyelp.png">
- Yang et al. 2016
+ [1](#references)
 </center>
 
 <br>
@@ -160,7 +127,7 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 **This is how the architecture** of HAN looks like:
 <center>
  <img width="60%" src="img/han_architecture.jpg">
- Yang et al. 2016
+ <p>[1](#references)</p>
 </center>
 
 First, the network considers the hierarchical structure of documents by constructing a document representation by building representations of sentences and then aggregating those into a document representation. <br>
@@ -212,21 +179,14 @@ The model consists of
 
 <img width="100%" src="img/han_sent.png">
 
-* Then the whole network is run on sentence level with basically the same procedure as on word level but now we focus on the actual sentence i. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input.
-
-#### Sentence Encoder
-
-* Contexts of sentences are summarized with a bidirectional GRU by going through the document forwards and backwards.
-  <center>
-  <img width="27%" src="img/h_i.JPG">
-    <img width="15%" src="img/h_i1.JPG">
-  </center>
-
-#### Sentence Attention
-
+* Then the whole network is run on sentence level with basically the same procedure as on word level. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input. In addition, now we focus on the actual sentence i.
 * Trainable weights and biases are again outside randomly initialized.
 * The final output is a document vector **v** which can be used as features for document classification.
+* Find all formula for sentence level below.
+
 <center>
+<img width="27%" src="img/h_i.JPG">
+ <img width="15%" src="img/h_i1.JPG">
 <img width="26%" src="img/ualphav.JPG">
 </center>
 
@@ -240,7 +200,7 @@ As the package [Keras](https://keras.io/) is 'a high-level neural networks API' 
 
 ### Data Preprocessing
 
-To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 million reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a million reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
+To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 billion reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a billion reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
 We combine the review columns to one column to consider them together in the model and keep only the necessary columns.
 
 =============script first_steps
@@ -253,13 +213,12 @@ We combine the review columns to one column to consider them together in the mod
 
 ================scr tokenization
 
-**For vectorization of our tokens** we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling. Unfortunately, we therefore can only remain 20,056 words to proceed. This will influence performance of our model. But we will come to this later.
+**For vectorization of our tokens** we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling.
 
 ============ scr embedding
 
-For a better comprehension of what those embeddings mean, have a closer a look at an example sentence and a single token. *Great* is described by 100 values in vector spaces computed by for instance nearest neighbors.
+For a better comprehension of what those embeddings mean, have a closer look at an example token. *Great* is described by 100 values in vector spaces computed by for instance nearest neighbors.
 
-=============== display ----> in einem script stück
 ===============0 scr example embedding_matrix
 
 Now, we can already define our first layer with Keras's *Embedding*:
@@ -269,7 +228,6 @@ Now, we can already define our first layer with Keras's *Embedding*:
 In a last step of data preprocessing, we want to set a train, validation and test data set. For that we define a function **split_df** which ensures that all sets are balanced hence they have the same ratio for each class as the full data set. Without this predefined grouping by star rating. it could happen that the model only trains on the most occurring rating.
 
 ================ scr split_df
-================= scr histogram full and train set
 
 ### Attention Mechanism
 
@@ -292,31 +250,43 @@ Congrats, you made it through a huge mass of theoretical input. Now, let's final
 * We want to have an output dimensionality of GRU equal to 50, because running it forwards and backwards returns 100 dimensions - which is the dimensionality of our inputs.
 * *Dropout* is a regularizer to prevent overfitting by turning off a number of neurons in every layer - 0.5 gets a high variance, but you can play around with this as well as with other parameters.
 
-=============================scr model
+<br>
+<br>
+<br>
 
-**Dense** implements a last layer for actual document classification. The document vector runs again with outside weights and biases through a softmax function. Softmax makes the output readable by giving the probability of belonging to a predefined class. We end up with 505 dense parameters (5 units x 100 dimensions + 5 biases).
+# News Classification
 
-**We train** the model throughout a relatively small number of epochs of 7 since our input data are already pre-trained and will overfit after too much epochs, also because the batch size of 32 works with a large number of inputs due to our large data set. Note that you have to train reviews **x** against labels **y** (in this case the 5-star ratings).
+To further display the attention mechanism, we also implemented the HAN on news articles to be able to classify them into categories, as well as to gain short summaries of articles by extracting the most important sentences using sentence attention weights. We used a publicly available dataset from the British Broadcasting Corporation (BBC) which contains 2225 news articles from the BBC news website from 2004-2005. The news articles are sorted after five different categories: business, entertainment, politics, sport, and tech. 
 
-================00scr history
-======================= scr evaluation
-========================= scr plots
+### Parameters
+===========================scr parameters
+As news articles tend to be longer than product reviews on average, we adjusted the parameters and increased the maximum number of sentences in one document and the maximum number of words in each sentence.
 
-**Model evaluation** is with 69 % quite high how a comparison with the results from Yang et al. themselves as well as from others shows (see table below).
-**Also history plots** show that the training data set perform pretty well. Still, this is unfortunately not supported by the validation data set. This might be because of the small number of words we could proceed after the embedding layer which filtered out almost 70 % of all tokens due to misspelling. This might be improved with an even smaller batch and epoch size, or with a better, less mistaken data set.
+### HAN Model
+==========================scr HAN Model
 
-<center>
-<img src="img/doc_class_comp.JPG" width="85%">
-Document Classification, in percentage. Yang et al. 2016
-</center>
+(show training plots? model accuracy and loss?)
 
-Note: HN-AVE and -MAX refers to hierarchical network with averaging and max-pooling methods, HN-ATT refers to hierarchical attention network described in this blog.
+========================= scr Test
+Compared to the Amazon dataset, the BBC dataset exhibits a much higher accuracy rate. This is probably due to the fact that news articles do not have any grammar or spelling mistakes, while product reviews written by users just burst from them. Thus, the more mistakes there are in the dataset, the more words we lose and cannot take into consideration, as the preprocessing basically discards them.
 
+### Input new articles
+To access newly released articles from BBC, we need to scrape the BBC website and save the title and text which is then cleaned, as described in the preprocessing, and subsequently converted to a sequence of numbers. 
+====================== scr Input text
 
-# Take Away
+### Sentence Attention Model
+Now, we need to build a new model to be able to extract the attention weights for each sentence. This is to identify the five most important sentences within a news article to put them together and create a short summary. 
+===================== scr Sentence Attention Model
 
-#### What is relevant to remember about text classification with hierarchical attention network?
+### Word Attention Model
+Additionally, we want to extract the usually hidden word attention weights as well for which we need to build another model. The words with the most attention serve as a good overview or framework for the article. 
+==================== scr Word Attention Model
 
-* hierarchical structure of documents (document - sentence - word)
-* attention on contexts of sentences and words
-* by considering changing contexts, HAN performs better for classification problems
+Words with most attention are used as new tags database can be created with taggs, summarized news articles
+
+<br>
+<br>
+
+### References
+
+1 Yang, Z., Yang, D., Dyer, C., He, X., Smola, A., & Hovy, E. (2016). Hierarchical attention networks for document classification. Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.
