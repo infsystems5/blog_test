@@ -2,10 +2,10 @@
 title = "Text Classification with Hierarchical Attention Network"
 date = '2019-02-08'
 tags = [ "Deep Learning", "Neural Networks", "Class18/19", "Hierarchical Network", "NLP", "Classification", "Attention"]
-categories = ["course projects"]
+categories = ["Course projects"]
 banner = "img/seminar/han/banner.jpg"
 author = "Seminar Information Systems (WS18/19)"
-disqusShortname = "https-humbodt-wi-github-io-blog"
+disqusShortname = "https-humboldt-wi-github-io-blog"
 description = "Hierarchical Attention Network - An Introduction"
 +++
 
