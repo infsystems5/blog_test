@@ -53,21 +53,15 @@ By topic labeling every kind of assigning text to topics or categories is meant.
 
 **Reviews**: With text classification businesses can easily find aspects on which customers disagree with their services or products. They do not have to go through low rating reviews by themselves but can detect categories in which their product did or did not satisfy.  
 
-**Tagging content**: Platforms like blogs live from publications of many people or pool products from other websites. So, if these are not tagged thoroughly in the first place, there might be the need to tag these texts or products in order to simplify navigation through the website. User experience is improved by this application too. In addition, good classified and tagged websites are more likely to appear in search engines like google. <br>
-Mentioning google: If you're using gmail, your mails are already automated filtered and labeled by google's text classification algorithms.
+**Tagging content**: Platforms like blogs live from publications of many people or pool products from other websites. So, if these are not tagged thoroughly in the first place, there might be the need to tag these texts or products in order to simplify navigation through the website. User experience is improved by this application too. In addition, good classified and tagged websites are more likely to appear in search engines like Google. <br>
+Mentioning Google: If you're using gmail, your mails are already automated filtered and labeled by Google's text classification algorithms.
 
-Others: Like classification of old, not digitalized texts, for instance for libraries.
+### Other Applications
 
-* Topic Labeling
-  * Marketing: Figure out trends, personalize products
-  * Product reviews: Examine evaluated features of a product
-  * Tagging content: Simplify navigation through websites, improve SEO
-  * Others
-* Sentiment Analysis
-* Spam Detection
-* Smart Replies
+Another application is **sentiment analysis**. Imagine again how differently customers might rate a product. Someone could be disappointed about one single feature that they rate it low although they liked the overall product. Or ratings might be low due to bad customer service whilst the product itself is satisfying. Text classification helps to identify those criteria.
+Now, sentiment analysis predicts the sentiment towards a specific characteristic on base of text classification. This not only finds economic application but especially in sentiment analysis for social and political debates.
 
-
+Text classification is already used for simpler applications like **filtering spam**. Also, a team of Google invented a method called Smart Replies in 2016. This method takes emails as inputs, identifies the sentiment or topic of the mailed text and automatically generates short, complete responses.  
 
 # Literature Review
 ## How do different methods perform in text classification problems?
