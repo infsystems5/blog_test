@@ -12,11 +12,11 @@ description = "Hierarchical Attention Network - An Introduction"
 # Text Classification with Hierarchical Attention Network
 ## How to assign documents to classes or topics
 
-#### Authors: Hee-Eun Lee, Maria Kränkel - Seminar Information System 18/19
+#### Authors: Maria Kränkel, Hee-Eun Lee - Seminar Information System 18/19
 
 # Introduction
 
-**Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
+**Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rate with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
 <center>
 <img src="img/intro1.png" width="90%">
@@ -224,4 +224,7 @@ In a last step of data preprocessing, we want to define our train, validation an
 
 ### References
 
-1 Yang et al. Hierarchical Attention Networks for Document Classification. 2016
+1 Yang, Z., Yang, D., Dyer, C., He, X., Smola, A., & Hovy, E. (2016). Hierarchical attention networks for document classification. Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.
+
+
+<script src="https://gist.github.com/leeh1234/b10d56b2f4d5d866013ead66eac618f3.js"></script>
