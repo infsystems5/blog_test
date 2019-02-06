@@ -3,9 +3,9 @@ title = "Text Classification with Hierarchical Attention Network"
 date = '2019-02-08'
 tags = [ "Deep Learning", "Neural Networks", "Class18/19", "Hierarchical Network", "NLP", "Classification", "Attention"]
 categories = ["Course projects"]
-banner = "img/seminar/han/banner.jpg"
+banner = "img/seminar/HAN_img/test_banner.jpg"
 author = "Seminar Information Systems (WS18/19)"
-disqusShortname = "https-wisample-github-io-blog"
+disqusShortname = "https-humbodt-wi-github-io-blog"
 description = "Hierarchical Attention Network - An Introduction"
 +++
 
@@ -20,7 +20,7 @@ description = "Hierarchical Attention Network - An Introduction"
 <br>
 <br>
 <center>
-<img src="img/intro1.png" width="90%">
+<img src="img/seminar/HAN_img/intro1.png" width="90%">
 </center>
 
 ## Outline
@@ -115,7 +115,7 @@ Summarizing, HAN tries to find a solution to these problems, previous works did 
 In this way, HAN performs better in predicting the class of a given document. <br>
 To start from scratch, have a look at this example:
 <center>
- <img width="50%" src="img/reviewyelp.png">
+ <img width="50%" src="img/seminar/HAN_img/reviewyelp.png">
  [1](#references)
 </center>
 
@@ -126,7 +126,7 @@ Here we have a review from yelp that consists of five sentences. The highlighted
 
 **This is how the architecture** of HAN looks like:
 <center>
- <img width="60%" src="img/han_architecture.jpg">
+ <img width="60%" src="img/seminar/HAN_img/han_architecture.jpg">
  <p>[1](#references)</p>
 </center>
 
@@ -142,13 +142,13 @@ The model consists of
 
 ### Word Level
 
-<img width="100%" src="img/han_word.png">
+<img width="100%" src="img/seminar/HAN_img/han_word.png">
 
 * As input we have structured tokens **w_it**, that is word i per sentence t. We do not keep all words in a sentence. Learn more about that in section [data preprocessing](data-preprocessing).
 * Since the model is not able to process plain text of data type *string*, the tokens run through an Embedding layer which 'assigns' multidimensional vectors **W_e*w_ij** to each token. In this way, words are represented numerically as **x_it** as a projection of the word in a continuous vector space. <br>
 	There are several embedding algorithms; the most popular are [word2vec](https://code.google.com/archive/p/word2vec/) and [GloVe](https://nlp.stanford.edu/projects/glove/). It is also possible to use pre-trained word embedding, so you can accelerate your model training. <br>
   <center>
-  <img width="21%" src="img/x_it.JPG">
+  <img width="21%" src="img/seminar/HAN_img/x_it.JPG">
   </center>
 
 #### Word Encoder
@@ -157,27 +157,27 @@ The model consists of
 	The purpose of this layer is to extract relevant contexts of every sentence. We call these contexts *annotations* per word. <br>
 	Note that in this model, *bidirectional* GRU is applied to get annotations of words by summarizing information from both directions resulting in a summarized variable **h_it**.  <br>
   <center>
-  <img width="25%" src="img/h_it.JPG">
+  <img width="25%" src="img/seminar/HAN_img/h_it.JPG">
   </center>
 
 #### Word Attention
 
 * Those annotations h_it build the base for the attention mechanism which starts with another hidden layer, a one-layer Multilayer Perceptron. Goal is to let the model learn through training with randomly initialized weights and biases. Those 'improved' annotations are then represented by **u_it**. Furthermore, this layer ensures that the network does not falter with a tanh function. This function 'corrects' input values to being between -1 and 1 and also maps zeros to near-zeros. <br>
   <center>
-  <img width="25%" src="img/u_it.JPG">
+  <img width="25%" src="img/seminar/HAN_img/u_it.JPG">
   </center>
 * Our new annotations are again multiplied with an outside trainable context vector **u_w** and normalized to an importance weight per word **alpha_it** by softmax function. <br>
   <center>
-  <img width="19%" src="img/alpha_it.JPG">
+  <img width="19%" src="img/seminar/HAN_img/alpha_it.JPG">
   </center>
 * The sum of these importance weights concatenated with the previously calculated context annotations is called sentence vector **s_i** <br>
   <center>
-  <img width="15%" src="img/s_i.JPG">
+  <img width="15%" src="img/seminar/HAN_img/s_i.JPG">
   </center>
 
 ### Sentence Level
 
-<img width="100%" src="img/han_sent.png">
+<img width="100%" src="img/seminar/HAN_img/han_sent.png">
 
 * Then the whole network is run on sentence level with basically the same procedure as on word level. Of course, there is no embedding layer as we already get sentence vectors **s_i** from word level as input. In addition, now we focus on the actual sentence i.
 * Trainable weights and biases are again outside randomly initialized.
@@ -185,9 +185,9 @@ The model consists of
 * Find all formula for sentence level below.
 
 <center>
-<img width="27%" src="img/h_i.JPG">
- <img width="15%" src="img/h_i1.JPG">
-<img width="26%" src="img/ualphav.JPG">
+<img width="27%" src="img/seminar/HAN_img/h_i.JPG">
+ <img width="15%" src="img/seminar/HAN_img/h_i1.JPG">
+<img width="26%" src="img/seminar/HAN_img/ualphav.JPG">
 </center>
 
 ## Implementation
@@ -235,7 +235,7 @@ Before we can concatenate the layers of the network in Keras, we need to build t
 
 ======================= scr attlayer
 
-<img src="img/only_att.png" width="88%">
+<img src="img/seminar/HAN_img/only_att.png" width="88%">
 
 The figure shows attention on word level as well as the class **AttentionLayer**, however, the layer is applied successively on first word and then sentence level.
 * **init** initializes variables from a uniform distribution. Also, we set *supports_masking = True* because the network needs fixed input lengths. If some inputs are shorter than maximum input length a mask will be created initialized with 0. Then the mask will be 'filled up' with 1 to positions where the input has values in. This is further defined in the next functions.
