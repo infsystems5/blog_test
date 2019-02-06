@@ -293,7 +293,7 @@ Congrats, you made it through a huge mass of theoretical input. Now, let's final
 **Also history plots** show that the training data set perform pretty well. Still, this is unfortunately not supported by the validation data set. This might be because of the small number of words we could proceed after the embedding layer which filtered out almost 70 % of all tokens due to misspelling. This might be improved with an even smaller batch and epoch size, or with a better, less mistaken data set.
 
 <center>
-<img src="img/doc_class_comp.JPG" width="90%">
+<img src="img/doc_class_comp.JPG" width="85%">
 Document Classification, in percentage. Yang et al. 2016
 </center>
 
@@ -301,7 +301,7 @@ Document Classification, in percentage. Yang et al. 2016
 
 # Take Away
 
-##### What is relevant to remember about text classification with hierarchical attention network?
+#### What is relevant to remember about text classification with hierarchical attention network?
 
 * hierarchical structure of documents (document - sentence - word)
 * attention on contexts of sentences and words
