@@ -5,7 +5,7 @@ tags = [ "Deep Learning", "Neural Networks", "Class18/19", "Hierarchical Network
 categories = ["Course projects"]
 banner = "img/seminar/han/banner.jpg"
 author = "Seminar Information Systems (WS18/19)"
-disqusShortname = "https-humboldt-wi-github-io-blog"
+disqusShortname = "https-wisample-github-io-blog"
 description = "Hierarchical Attention Network - An Introduction"
 +++
 
