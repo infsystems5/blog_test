@@ -13,8 +13,9 @@ description = "Hierarchical Attention Network - An Introduction"
 ## How to assign documents to classes or topics
 
 #### Authors: Maria Kränkel, Hee-Eun Lee - Seminar Information System 18/19
-
-## Introduction
+<br>
+<br>
+## Introduction 
 
 
 **Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product which a customer rates with 3 out of 5 stars very good, while others tend to always give five stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
@@ -44,6 +45,8 @@ description = "Hierarchical Attention Network - An Introduction"
 **Evaluating all of the textual data manually** is very time consuming and strenuous. A more efficient way to extract important information from it is text classification. <br>
 Text classification is a fundamental task in natural language processing. The goal is to assign unstructured documents (e.g. reviews, emails, posts, website contents etc.) to classes, that is, to classify them. Such classes can be review scores like star ratings, spam or topic labeling. <br>
 Essentially, text classification can be used whenever there are certain tags to map to a large amount of textual data. To learn how to classify, we need to build classifiers which are obtained from labeled examples. In this way, the process of examining information becomes automated and thus simpler.
+<br>
+<br>
 
 ## Applications
 
@@ -64,6 +67,8 @@ Another application is **sentiment analysis**. Imagine again how differently cus
 Now, sentiment analysis predicts the sentiment towards a specific characteristic on base of text classification. This not only finds economic application but especially in sentiment analysis for social and political debates. 
 Text classification is already used for simpler applications like **filtering spam**. Also, a team of Google invented a method called Smart Reply in 2016. This method takes e-mails as inputs, identifies the sentiment or topic of the mailed text and automatically generates short, complete responses.  
 
+<br>
+<br>
 
 ## Literature Review
 ### How do different methods perform in text classification problems?
@@ -128,6 +133,9 @@ LSTM | Long Short-term Memory
 GRU | Gated Recurrent Unit
 HAN | Hierarchical Attention Network
 
+<br>
+<br>
+
 ## Text Classification with Hierarchical Attention Network
 
 Contrary to the most text classification implementations, HAN also considers the hierarchical structure of documents (document - sentences - words) and includes an attention mechanism that's able to find the most important words and sentences given the whole contexts, whereas other methods only return importance weights resulting from previous words. <br>
@@ -144,6 +152,8 @@ To start from scratch, have a look at this example:
 
 <br>
 Here we have a review from yelp that consists of five sentences. The highlighted sentences in red deliver stronger meaning compared to the others and inside, the words *delicious* and *amazing* contribute the most in attributing the positive attitude contained in this review. HAN predicts pretty well the most relevant information as it assorts with what we would intuitively gain from this review. <br>
+
+<br>
 
 ## Architecture of Hierarchical Attention Network
 
@@ -213,6 +223,9 @@ The model consists of
 <img width="26%" src="blog/img/seminar/HAN_img/ualphav.JPG">
 </center>
 
+<br>
+<br>
+
 ## Implementation
 
 ### Import libraries
@@ -278,25 +291,25 @@ Congrats, you made it through a huge mass of theoretical input. Now, let's final
 
 <br>
 <br>
-<br>
 
 # News Classification
 
 To further display the attention mechanism, we also implemented the HAN on news articles to be able to classify them into categories, as well as to gain short summaries of articles by extracting the most important sentences using sentence attention weights. We used a publicly available dataset from the British Broadcasting Corporation (BBC) which contains 2225 news articles from the BBC news website from 2004-2005. The news articles are sorted after five different categories: business, entertainment, politics, sport, and tech. 
 
 ### Parameters
-<script src="https://gist.github.com/leeh1234/1c7888cc8ca298ca0a2e071df8c761dc.js"></script>
-
 As news articles tend to be longer than product reviews on average, we adjusted the parameters and increased the maximum number of sentences in one document and the maximum number of words in each sentence.
+
+<script src="https://gist.github.com/leeh1234/1c7888cc8ca298ca0a2e071df8c761dc.js"></script>
 
 ### HAN Model
 <script src="https://gist.github.com/leeh1234/5b75b55aa6e5328a7ab996bf392ae689.js"></script>
 
 (show training plots? model accuracy and loss?)
 
+Our testset shows the following results:
 <script src="https://gist.github.com/leeh1234/0cbcce6a9cbdcaf3122951cd2d522b63.js"></script>
 
-Compared to the Amazon dataset, the BBC dataset exhibits a much higher accuracy rate. This is probably due to the fact that news articles do not have any grammar or spelling mistakes, while product reviews written by users just burst from them. Thus, the more mistakes there are in the dataset, the more words we lose and cannot take into consideration, as the preprocessing basically discards them.
+Compared to the Amazon dataset, the BBC dataset exhibits a much higher accuracy rate. This is probably due to several facts: news articles are in general much longer than product reviews, and therefore the HAN can exploit this and gain more information. Also, news articles have no grammar and spelling mistakes, while product reviews written by users just burst from them. Grammar and spelling mistakes lead to misinterpretation of words and thus loss of information. Another aspect is that the categorization classes of the BBC dataset are much easier to distinguish, whereas the star rating categorization of Amazon are very subjective and it is quite hard to draw a straight line between different categories.   
 
 ### Input new articles
 To access newly released articles from BBC, we need to scrape the BBC website and save the title and text which is then cleaned, as described in the preprocessing, and subsequently converted to a sequence of numbers. 
@@ -323,5 +336,5 @@ Words with most attention are used as new tags database can be created with tagg
 
 ### References
 
-1 Yang, Z., Yang, D., Dyer, C., He, X., Smola, A., & Hovy, E. (2016). Hierarchical attention networks for document classification. Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.
+1 	Yang, Z., Yang, D., Dyer, C., He, X., Smola, A., & Hovy, E. (2016). Hierarchical attention networks for document classification.  Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.
 
