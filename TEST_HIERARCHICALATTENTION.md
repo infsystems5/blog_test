@@ -223,26 +223,29 @@ As the package [Keras](https://keras.io/) is 'a high-level neural networks API' 
 
 ### Data Preprocessing
 
-To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 billion reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a billion reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
+To demonstrate how to apply HAN we use a part of Amazon reviews for Electronic data which are public available [here](http://jmcauley.ucsd.edu/data/amazon/). This data set consists of nearly 1.7 million reviews. As the model learns through training it is highly important to have data sets with a large number of observations. Nevertheless, a million reviews would take us **days** to train on, so we set the number of reviews to keep equal to 100,000. <br>
 We combine the review columns to one column to consider them together in the model and keep only the necessary columns.
 
-=============script first_steps
+<script src="https://gist.github.com/leeh1234/16ca1c4603b2cafb25acc06c3e75acc1.js"></script>
 
 **Words have to be lemmatized** to ensure that not every single typo or related term is handled by itself. Additionally, so-called stop words are filtered out. In our case, that is mainly prepositions like *as* or *to* that do not contribute to the meaning of the text. Have a look at function **cleanString**.
 
-=================scr clean_string
+====================================== cleanString
 
 **After that we can tokenize** the given sentences. We set the maximum number of words to keep equal to 200,000.
 
-================scr tokenization
+<script src="https://gist.github.com/leeh1234/d01d78c028b7c1ed0ae352a35735f7d0.js"></script>
 
 **For vectorization of our tokens** we use one of GloVe's pretrained embedding dictionaries with 100 dimensions, that is one word is represented by 100 values in a matrix. As mentioned [before](#word-level), this accelerates our training. We match our tokens with the pretrained dictionary and filter out words that appear rarely (mostly due to spelling mistakes). As you can see, reviewers for our chosen products do not pay attention to correct spelling.
 
-============ scr embedding
+<script src="https://gist.github.com/leeh1234/037e73ae0abbf3c2d5550503c0812db2.js"></script>
 
 For a better comprehension of what those embeddings mean, have a closer look at an example token. *Great* is described by 100 values in vector spaces computed by for instance nearest neighbors.
 
-===============0 scr example embedding_matrix
+<script src="https://gist.github.com/leeh1234/0d4ce05bef2111efcfaa45784973c366.js"></script>
+<br>
+<script src="https://gist.github.com/leeh1234/4aebbe9f19d7be410e038c3656b8a0b4.js"></script>
+
 
 Now, we can already define our first layer with Keras's *Embedding*:
 
@@ -256,7 +259,7 @@ In a last step of data preprocessing, we want to set a train, validation and tes
 
 Before we can concatenate the layers of the network in Keras, we need to build the attention mechanism. Keras has a class '[Writing your own Keras layer](https://keras.io/layers/writing-your-own-keras-layers/)'. Here you are given some useful functions to implement attention. For better understanding, again have a look at the modeled attention mechanism.
 
-======================= scr attlayer
+<script src="https://gist.github.com/leeh1234/5ed7573c47c90fa3b66c6194369ae801.js"></script>
 
 <img src="img/seminar/HAN_img/only_att.png" width="88%">
 
@@ -282,30 +285,38 @@ Congrats, you made it through a huge mass of theoretical input. Now, let's final
 To further display the attention mechanism, we also implemented the HAN on news articles to be able to classify them into categories, as well as to gain short summaries of articles by extracting the most important sentences using sentence attention weights. We used a publicly available dataset from the British Broadcasting Corporation (BBC) which contains 2225 news articles from the BBC news website from 2004-2005. The news articles are sorted after five different categories: business, entertainment, politics, sport, and tech. 
 
 ### Parameters
-===========================scr parameters
+<script src="https://gist.github.com/leeh1234/1c7888cc8ca298ca0a2e071df8c761dc.js"></script>
+
 As news articles tend to be longer than product reviews on average, we adjusted the parameters and increased the maximum number of sentences in one document and the maximum number of words in each sentence.
 
 ### HAN Model
-==========================scr HAN Model
+<script src="https://gist.github.com/leeh1234/5b75b55aa6e5328a7ab996bf392ae689.js"></script>
 
 (show training plots? model accuracy and loss?)
 
-========================= scr Test
+<script src="https://gist.github.com/leeh1234/0cbcce6a9cbdcaf3122951cd2d522b63.js"></script>
+
 Compared to the Amazon dataset, the BBC dataset exhibits a much higher accuracy rate. This is probably due to the fact that news articles do not have any grammar or spelling mistakes, while product reviews written by users just burst from them. Thus, the more mistakes there are in the dataset, the more words we lose and cannot take into consideration, as the preprocessing basically discards them.
 
 ### Input new articles
 To access newly released articles from BBC, we need to scrape the BBC website and save the title and text which is then cleaned, as described in the preprocessing, and subsequently converted to a sequence of numbers. 
-====================== scr Input text
+<script src="https://gist.github.com/leeh1234/3ecc73e0f3c2c163c8e0dea73f33981e.js"></script>
 
 ### Sentence Attention Model
 Now, we need to build a new model to be able to extract the attention weights for each sentence. This is to identify the five most important sentences within a news article to put them together and create a short summary. 
-===================== scr Sentence Attention Model
+<script src="https://gist.github.com/leeh1234/98553337afe357407002c5a698ac8a46.js"></script>
 
 ### Word Attention Model
 Additionally, we want to extract the usually hidden word attention weights as well for which we need to build another model. The words with the most attention serve as a good overview or framework for the article. 
-==================== scr Word Attention Model
+<script src="https://gist.github.com/leeh1234/6b5d21606a399d01fc1d5aca0d076469.js"></script>
+<script src="https://gist.github.com/leeh1234/ed879dc80e2d904c9cd7a33ae4c56a9f.js"></script>
 
 Words with most attention are used as new tags database can be created with taggs, summarized news articles
+
+<script src="https://gist.github.com/leeh1234/07ac108692fe2afd5096a899e6ac4c25.js"></script>
+<br>
+<br>
+<script src="https://gist.github.com/leeh1234/13b13ff87bbc6f30e6c6669d3f9b063e.js"></script>
 
 <br>
 <br>
@@ -313,5 +324,4 @@ Words with most attention are used as new tags database can be created with tagg
 ### References
 
 1 Yang, Z., Yang, D., Dyer, C., He, X., Smola, A., & Hovy, E. (2016). Hierarchical attention networks for document classification. Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.
-
 
