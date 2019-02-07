@@ -2,7 +2,7 @@
 title = "Text Classification with Hierarchical Attention Network"
 date = '2019-02-08'
 tags = [ "Deep Learning", "Neural Networks", "Class18/19", "Hierarchical Network", "NLP", "Classification", "Attention"]
-categories = ["Course projects"]
+categories = ["course projects"]
 banner = "img/seminar/HAN_img/test_banner.jpg"
 author = "Seminar Information Systems (WS18/19)"
 disqusShortname = "https-humbodt-wi-github-io-blog"
@@ -14,41 +14,59 @@ description = "Hierarchical Attention Network - An Introduction"
 
 #### Authors: Maria Kränkel, Hee-Eun Lee - Seminar Information System 18/19
 
-# Introduction
+## Introduction
 
-<<<<<<< HEAD
-**Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rate with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
 
-=======
-**Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product they rates with 3 out of 5 stars very good, others always give full stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
+**Imagine you work for a company** that sells cameras and you would like to find out what customers think about the latest release. Ratings might not be enough since users tend to rate products differently. One might consider a product which a customer rates with 3 out of 5 stars very good, while others tend to always give five stars even if they dislike a few aspects. Text classification can give a clue, whether ratings actually describe the overall opinion towards the product. Additionally, the number of possibilities to get opinions from is rising: Nowadays, you will be able to find a vast amount of reviews on your product or general opinion sharing from users on various platforms, such as facebook, twitter, instagram, or blogposts. As you can see, the number of platforms that need to be operated is quite big and therefore also the amount of comments or reviews. So, how can you deal with all of this textual data and gain knowledge from it?
+
 <br>
 <br>
 
 <center>
-<img src="blog/img/seminar/HAN_img/intro1.png" width="90%">
+<img src="/blog/content/research/information_systems_1819/content/HAN_img/intro1.png" width="90%">
 </center>
 
 ## Outline
 * [Introduction](#introduction)
 * [Text Classification](#text-classification)
+* [Applications](#applications)
 * [Literature Review](#literature-review)
 * [Text Classification with Hierarchical Attention Network](#text-classification-with-hierarchical-attention-network)
   * [Architecture of Hierarchical Attention Network](#architecture-of-hierarchical-attention-network)
   * [Word Level](#word-level)
   * [Sentence Level](#sentence-level)
   * [Implementation](#implementation)
-* [Applications](#applications)
 * [News Classification](#news-classification)
 * [Take Away](#take-away)
 
-# Text Classification
+## Text Classification
 
 **Evaluating all of the textual data manually** is very time consuming and strenuous. A more efficient way to extract important information from it is text classification. <br>
 Text classification is a fundamental task in natural language processing. The goal is to assign unstructured documents (e.g. reviews, emails, posts, website contents etc.) to classes, that is, to classify them. Such classes can be review scores like star ratings, spam or topic labeling. <br>
-Essentially, text classification can be used whenever there are certain tags to map to a large amount of textual data. To learn the how to classify, we need to build classifiers which are obtained from labeled examples. In this way, the process of examining information becomes automated and thus simpler.
+Essentially, text classification can be used whenever there are certain tags to map to a large amount of textual data. To learn how to classify, we need to build classifiers which are obtained from labeled examples. In this way, the process of examining information becomes automated and thus simpler.
 
-# Literature Review
-## How do different methods perform in text classification problems?
+## Applications
+
+Text classification finds a variety of application possibilities due to the large amount of data which can be interpreted.
+<br>
+<br>
+**Topic labeling** if one of the most important and widest used applications of text classification. By topic labeling every kind of assigning text to topics or categories is meant. This can also include unstructured texts. The main goal is to extract generic tags. It has a few sub applications such as in: <br>
+
+* Marketing: As it has moved from search engines to social media platforms. There, real communication between brands and users take place. Users don't only review products but also discuss them with other users. With text classification, businesses can classify those products which have great consideration. Based on this, trends and customer types can be examined. <br>
+
+* Reviews: With text clasification businesses can easily find aspects on which customers disagree with their services or products. They don't have to go through low rating reviews by themselves but can detect categories in which their product did or did not satisfy. <br>
+
+* Tagging content: Platforms like blogs live from publications of many people or pool products from other websites. So, if these are not tagged thoroughly in the first place, there might be the need to tag these texts or products, in order to simplify navigation through the website. User experience is improved by this application, too. In addition, good classified and tagged websites are more likely to appear in search engines like google. 
+Mentioning google: If you're using gmail, your e-mails are already automatically filtered and labeled by google's text classification algorithms. 
+
+<br>
+Another application is **sentiment analysis**. Imagine again how differently customers might rate a product. Someone could be disappointed about one single feature that they rate it low although they liked the overall product. Or ratings might be low due to bad customer service whilst the product itself is satisfying. Text classification helps to identify those criteria. 
+Now, sentiment analysis predicts the sentiment towards a specific characteristic on base of text classification. This not only finds economic application but especially in sentiment analysis for social and political debates. 
+Text classification is already used for simpler applications like **filtering spam**. Also, a team of Google invented a method called Smart Reply in 2016. This method takes e-mails as inputs, identifies the sentiment or topic of the mailed text and automatically generates short, complete responses.  
+
+
+## Literature Review
+### How do different methods perform in text classification problems?
 **For our implementation of text classification**, we have applied a hierarchical attention network, a classification method from Yang and others from 2016. The reason they developed it, although there are already well working neural networks for text classification, is because they wanted to pay attention to certain characteristics of document structures which have not been considered previously. <br>
 But before going deeper into this, let's have a look at what others did:
 
@@ -59,11 +77,11 @@ Here you can see the most important steps in unsupervised text classification:
 
 Year | Authors | Method Characteristics | Paper
 -----|---------|------------------------|-----------------------------
-1971 | Jardine, van Rijsbergen | Clustering keywords of similar texts | [The Use of Hierarchic Clustering in Information Retrieval](https://www.researchgate.net/publication/220229653_The_Use_of_Hierarchic_Clustering_in_Information_Retrieval)
-1974 | Salton et al. | Ranking words in accordance with how well they are able to discriminate the documents | [A Theory of Term Importance in Automatic Text Analysis.](https://eric.ed.gov/?id=ED096987)
+1971 | Jardine, van Rijsbergen | Clustering keywords of similar texts | [The Use of Hierarchic Clustering in Information Retrieval](https://www.researchgate.net/publication/220229653_The_Use_of_Hierarchic_Clustering_in_Information_Retrieval)
+1974 | Salton et al. | Ranking words in accordance with how well they are able to discriminate the documents | [A Theory of Term Importance in Automatic Text Analysis.](https://eric.ed.gov/?id=ED096987)
 1983 | Salton, McGill | SMART - First text representations with vectors | [Introduction to Modern Information Retrieval](http://www.information-retrieval.de/irb/ir.part_1.chapter_3.section_6.topic_6.html)
 1992 | Cutting et al. | SG - Scattering text to few clusters, manual gathering to sub-collections | [Scatter/Gather: A Cluster-based Approach to Browsing Large Document Collections](https://www-users.cs.umn.edu/~hanxx023/dmclass/scatter.pdf)
-1998 | Zamir, Etzioni | Suffix Tree - Phrases shared between documents - First IR for web search engines | [Web Document Clustering: A Feasibility Demonstration](https://homes.cs.washington.edu/~etzioni/papers/sigir98.pdf)
+1998 | Zamir, Etzioni | Suffix Tree - Phrases shared between documents - First IR for web search engines | [Web Document Clustering: A Feasibility Demonstration](https://homes.cs.washington.edu/~etzioni/papers/sigir98.pdf)
 
 Find all listed abbreviations in the following table:
 
@@ -79,21 +97,21 @@ Since we use a neural network, the comparison with other neural networks is prio
 
 Year | Network | Authors | Method Characteristics | Paper
 -----|---------|---------|------------------------|--------------------------
-1995 | PN | Makoto, Tokunaga | Clustering by maximum Bayesian posterior probability | [Hierarchical Bayesian Clustering for Automatic Text Classification](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=BE17EC88A0C9DB576DA0E36C70F54EC3?doi=10.1.1.52.2417&rep=rep1&type=pdf)
+1995 | PN | Makoto, Tokunaga | Clustering by maximum Bayesian posterior probability | [Hierarchical Bayesian Clustering for Automatic Text Classification](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=BE17EC88A0C9DB576DA0E36C70F54EC3?doi=10.1.1.52.2417&rep=rep1&type=pdf)
 1999 | PN | Nigam et al. | Improving learned classifiers with Expectation Maximization and Naive Bayes | [Text Classification from Labeled and Unlabeled Documents using EM.](http://www.kamalnigam.com/papers/emcat-mlj99.pdf)
  | | | |
 1998 | SVM | Joachims | Binary classifying, represenation with support-vectors | [Text Categorization with Support Vector Machines: Learning with Many Relevant Features.](http://web.cs.iastate.edu/~jtian/cs573/Papers/Joachims-ECML-98.pdf)
 2004 | SVM | Mullen, Collier | Classifying with SVM and unigrams | [Sentiment analysis using support vector machines with diverse information sources](http://www.aclweb.org/anthology/W04-3253)
-2005 | SVM-H | Matsumoto et al. | SVM + Unigrams and Bigrams, Sentence dependancy sub-trees, word sub-sequences | [Sentiment Classification Using Word Sub-sequences and Dependancy Sub-trees](https://link.springer.com/content/pdf/10.1007%2F11430919_37.pdf)
+2005 | SVM-H | Matsumoto et al. | SVM + Unigrams and Bigrams, Sentence dependancy sub-trees, word sub-sequences | [Sentiment Classification Using Word Sub-sequences and Dependancy Sub-trees](https://link.springer.com/content/pdf/10.1007%2F11430919_37.pdf)
  | | | |
 1994 | NN | Farkas | NN + Thesaurus -> First weighted, dictionairy-based relations | [Generating Document Clusters Using Thesauri and Neural Networks](https://vdocuments.site/ieee-proceedings-of-canadian-conference-on-electrical-and-computer-engineering-58e24c154d826.html)
-1996 | NN-SOM | Hyötyniemi | Competitive learning instead of error-correction (e.g. backpropagation), Mapping to reduced dimensions | [Text Document Classification with Self-Organizing Maps](http://lipas.uwasa.fi/stes/step96/step96/hyotyniemi3/)
+1996 | NN-SOM | Hyötyniemi | Competitive learning instead of error-correction (e.g. backpropagation), Mapping to reduced dimensions | [Text Document Classification with Self-Organizing Maps](http://lipas.uwasa.fi/stes/step96/step96/hyotyniemi3/)
 1998 | NN-SOM-H | Merkl | SOM on hierarchical document levels | [Text classification with self-organizing maps: Some lessons learned](https://www.sciencedirect.com/science/article/pii/S0925231298000320)
  | | | |
 2014 | CNN | Johnson, Zhang | CNN on word order instead of low-dimensional word vectors | [Effective Use of Word Order for Text Categorization with Convolutional Neural Networks](https://arxiv.org/pdf/1412.1058.pdf)
 2014 | CNN | Kim | Simple CNN with static vectors on top of pre-trained word vectors | [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/pdf/1408.5882.pdf)
-2014 | CNN-char | dos Santos, Zadrozny | Semantic word informations with CNN on character level | [Learning Character-level Representations for Part-of-Speech Tagging](http://proceedings.mlr.press/v32/santos14.pdf)
-2015 | LSTM | Tai et al. | LSTM on tree-structured networks | [Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks](http://aclweb.org/anthology/P15-1150)
+2014 | CNN-char | dos Santos, Zadrozny | Semantic word informations with CNN on character level | [Learning Character-level Representations for Part-of-Speech Tagging](http://proceedings.mlr.press/v32/santos14.pdf)
+2015 | LSTM | Tai et al. | LSTM on tree-structured networks | [Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks](http://aclweb.org/anthology/P15-1150)
 2015 | C-LSTM | Zhou et al. | CNN for higher-level representations, LSTM for sentence representations | [A C-LSTM Neural Network for Text Classification](https://arxiv.org/pdf/1511.08630.pdf)
 2015 | CNN/LSTM-GRU | Tang et al. | CNN / LSTM for sentence representation, GRU for semantic information | [Document Modeling with Gated Recurrent Neural Network for Sentiment Classification](http://ir.hit.edu.cn/~dytang/paper/emnlp2015/emnlp2015.pdf)
 2016 | HAN | Yang et al. | NN and GRU on hierarchical document levels with attention on contexts | [Hierarchical Attention Networks for Document Classification](https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf)
@@ -110,7 +128,7 @@ LSTM | Long Short-term Memory
 GRU | Gated Recurrent Unit
 HAN | Hierarchical Attention Network
 
-# Text Classification with Hierarchical Attention Network
+## Text Classification with Hierarchical Attention Network
 
 Contrary to the most text classification implementations, HAN also considers the hierarchical structure of documents (document - sentences - words) and includes an attention mechanism that's able to find the most important words and sentences given the whole contexts, whereas other methods only return importance weights resulting from previous words. <br>
 Summarizing, HAN tries to find a solution to these problems, previous works did not consider:
@@ -295,8 +313,5 @@ Words with most attention are used as new tags database can be created with tagg
 ### References
 
 1 Yang, Z., Yang, D., Dyer, C., He, X., Smola, A., & Hovy, E. (2016). Hierarchical attention networks for document classification. Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.
-<<<<<<< HEAD
 
 
-<script src="https://gist.github.com/leeh1234/b10d56b2f4d5d866013ead66eac618f3.js"></script>
-=======
